@@ -12,13 +12,14 @@ export default function Flexbox({Items}:DisplayObjectProps){
         <>
             { Items.length > 0 && (
         <ul> 
-            {Items.map((item) => ( 
-                <li id={item}>
+            {Items.map((item,i) => ( 
+                <Box>
+                <li id={item.toString()} key={i}>
                     {'  '}
-                    <Box content = {item.toString()} />
+                {item}
 
                 </li>
-
+                </Box>
             ))}
         </ul>
     )   } 

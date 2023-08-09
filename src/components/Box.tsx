@@ -2,11 +2,11 @@ interface DisplayClassableProps{
     content: string;
 }
 
-export default function Box({ content }:DisplayClassableProps){
+export default function Box({ children }: {children:JSX.Element | JSX.Element[]} ){
 
     return (
         <div className="Box">
-        <h3> {content}</h3>
+        {children}
         </div>
     )
 
