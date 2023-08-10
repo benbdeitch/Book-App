@@ -1,6 +1,4 @@
-interface DisplayClassableProps{
-    content: string;
-}
+
 
 export default function Box({ children }: {children:JSX.Element | JSX.Element[]} ){
 

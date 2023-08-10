@@ -26,7 +26,7 @@ export default function Booklist(){
         })
         if (response.ok) {
             const data = await response.json();
-            
+            console.log(data)
 
         }
     }
