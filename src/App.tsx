@@ -17,6 +17,7 @@ function App() {
       let testToken:string|null = localStorage.getItem('token')
       let testUser:string|null = localStorage.getItem('username')
       let userForUrl:string = testUser ?? "";
+      console.log(userForUrl)
       useEffect(() =>{
         if (!user.token && testToken && testUser){
           setUser({
