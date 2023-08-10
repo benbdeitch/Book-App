@@ -1,7 +1,7 @@
 body{
   background-color:black;
   color:white;
-  background-image: url('ed-robertson-eeSdJfLfx1A-unsplash.jpg');
+  background-image: url('https://github.com/benbdeitch/react-project/blob/main/src/static/images/ed-robertson-eeSdJfLfx1A-unsplash.jpg');
   background-size: cover;
   background-repeat:no-repeat
 }
