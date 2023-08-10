@@ -1,9 +1,11 @@
 interface DisplayObjectProps{
 
-    Items: string[]
+    Items: {
+        string :string,
+        key: string
+}[]
 }
 import Box from "./Box"
-
 export default function Flexbox({Items}:DisplayObjectProps){
     
 
@@ -12,14 +14,13 @@ export default function Flexbox({Items}:DisplayObjectProps){
         <>
             { Items.length > 0 && (
         <ul> 
-            {Items.map((item,i) => ( 
-                <Box>
-                <li id={item.toString()} key={i}>
-                    {'  '}
-                {item}
+            {Items.map((item) => ( 
+                <li id={item.toString()} key={item.key}>
+                <Box >
 
-                </li>
+                
                 </Box>
+                </li>
             ))}
         </ul>
     )   } 

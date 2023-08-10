@@ -39,12 +39,25 @@ export default function LoginForm() {
         if (response.ok) {
             const data = await response.json();
             console.log(data);
-            setUser({
-                username:usernameField.current!.value.toString(),
-                token: data.access_token
-            })
+            updateUserState(usernameField.current!.value, data["access_token"])
+            
         resetForm()
         } else window.alert('Invalid UserData');
+    }
+
+
+
+    function updateUserState(username:string, token:string){
+        setUser({
+            username:username,
+            token: token
+        })
+        localStorage.setItem('token', JSON.stringify(token))
+        localStorage.setItem('username', JSON.stringify(username))
+        console.log(
+            "Local Storage: " +localStorage.getItem("username"),
+            localStorage.getItem("token"))
+
     }
     return (
     <div>

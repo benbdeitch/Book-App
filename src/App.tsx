@@ -6,9 +6,24 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Footer from "./components/Footer";
 import FormPage from "./pages/FormPage";
 import UserProfile from "./pages/UserProfile";
+import Logout from "./components/Logout";
+import { UserContext } from "./contexts/UserProvider";
+import { useContext, useEffect } from "react";
+import ListPage from "./pages/ListPage";
+
 function App() {
 
-
+      const {user, setUser} = useContext(UserContext)
+      let testToken:string|null = localStorage.getItem('token')
+      let testUser:string|null = localStorage.getItem('username')
+      useEffect(() =>{
+        if (!user.token && testToken && testUser){
+          setUser({
+            username: testUser,
+            token: testToken
+          })
+        }
+      })
   return (
     <>
     <BrowserRouter>
@@ -16,7 +31,9 @@ function App() {
       <Routes>
       <Route path='/login' element= {<FormPage />} />
       <Route path='/' element={<MainPage />} />
-      <Route path='/user-profile' element={<UserProfile />} />
+      <Route path='/user-profile/:username' element={<UserProfile  userSearch ={"string"}/> }/>
+      <Route path='/logout' element={<Logout/>} />
+      <Route path='/show-list' element={<ListPage/>} />
       <Route path='*' element={<Navigate to='/' />} />
       </Routes>
       <Footer/>
