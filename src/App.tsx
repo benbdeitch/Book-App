@@ -19,8 +19,8 @@ function App() {
       useEffect(() =>{
         if (!user.token && testToken && testUser){
           setUser({
-            username: testUser,
-            token: testToken
+            username: JSON.parse(testUser),
+            token: JSON.parse(testToken)
           })
         }
       })
