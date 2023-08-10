@@ -16,7 +16,10 @@ function App() {
       const {user, setUser} = useContext(UserContext)
       let testToken:string|null = localStorage.getItem('token')
       let testUser:string|null = localStorage.getItem('username')
-      let userForUrl:string = testUser ?? "";
+      let userForUrl:string = ""
+      if (testUser!==null){
+         userForUrl = JSON.parse(testUser);
+      }
       console.log(userForUrl)
       useEffect(() =>{
         if (!user.token && testToken && testUser){
@@ -34,7 +37,7 @@ function App() {
       <Routes>
       <Route path='/login' element= {<FormPage />} />
       <Route path='/' element={<MainPage />} />
-      <Route path='/user-profile/:username' element={<UserProfile  userSearch = {JSON.parse(userForUrl)}/> }/>
+      <Route path='/user-profile/:username' element={<UserProfile  userSearch = {userForUrl}/> }/>
       <Route path='/logout' element={<Logout/>} />
       <Route path='/show-list' element={<ListPage/>} />
       <Route path='*' element={<Navigate to='/' />} />
