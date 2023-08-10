@@ -26,6 +26,11 @@ export default function Navbars() {
                    Logout
                 </Nav.Link>
               </Nav.Item>
+              <Nav.Item >
+                <Nav.Link as={NavLink} to="/show-list" className = 'mr-3'>
+                   View List
+                </Nav.Link>
+              </Nav.Item>
                <Nav.Link  as={NavLink} to={`/user-profile/${user.username}`}>User Profile</Nav.Link>
                <NavDropdown title="Manage List" id="basic-nav-dropdown">
                  <NavDropdown.Item href="#action/3.1">View Recommendations</NavDropdown.Item>
