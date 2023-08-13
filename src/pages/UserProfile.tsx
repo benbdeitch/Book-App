@@ -8,14 +8,14 @@ import DisplayUser from "../components/displayUser"
 
 
 
-export default function UserProfile({ userSearch }:encasedString){
+export default function UserProfile({ string }:encasedString){
    
 
 
     return (
         <>
         <Box>
-        <DisplayUser userSearch= {userSearch}/>
+        <DisplayUser string= {string}/>
         </Box>
         </>
     )    

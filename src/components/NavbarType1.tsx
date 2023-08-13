@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { NavLink } from 'react-router-dom';
-import UserSearch from './UserSearch';
+import UserSearch from '../forms/UserSearch';
 import { useContext } from 'react';
 import { UserContext } from '../contexts/UserProvider';
 
@@ -34,7 +34,7 @@ export default function Navbars() {
                <Nav.Link  as={NavLink} to={`/user-profile/${user.username}`}>User Profile</Nav.Link>
                <NavDropdown title="Manage List" id="basic-nav-dropdown">
                  <NavDropdown.Item href="#action/3.1">View Recommendations</NavDropdown.Item>
-                 <NavDropdown.Item href="#action/3.2">
+                 <NavDropdown.Item as={NavLink} to={'/book-search'}>
                    Search by Book 
                  </NavDropdown.Item>
                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>

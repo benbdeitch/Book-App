@@ -10,6 +10,8 @@ import Logout from "./components/Logout";
 import { UserContext } from "./contexts/UserProvider";
 import { useContext, useEffect } from "react";
 import ListPage from "./pages/ListPage";
+import BookSearchResultsPage from "./pages/BookSearchResultsPage";
+import LoginForm from "./forms/LoginForm";
 
 function App() {
 
@@ -35,12 +37,14 @@ function App() {
     <BrowserRouter>
       <Navbars/>
       <Routes>
-      <Route path='/login' element= {<FormPage />} />
+      <Route path='/login' element= {<FormPage form={<LoginForm/>} />} />
       <Route path='/' element={<MainPage />} />
-      <Route path='/user-profile/:username' element={<UserProfile  userSearch = {userForUrl}/> }/>
+      <Route path='/user-profile/:username' element={<UserProfile  string= {userForUrl}/> }/>
       <Route path='/logout' element={<Logout/>} />
       <Route path='/show-list' element={<ListPage/>} />
+      <Route path= '/book-search' element= {<BookSearchResultsPage/>} />
       <Route path='*' element={<Navigate to='/' />} />
+
       </Routes>
       <Footer/>
       </BrowserRouter>

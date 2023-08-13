@@ -17,5 +17,23 @@ interface UserData{
 }
 
 interface encasedString{
-    userSearch:string,
+    string:string,
+}
+
+interface Book{
+    author?:string; 
+    googleId:string;
+    publishDate?:string;
+    image?: string;
+    rating?:number; 
+    review?:string;
+    title: string;
+}
+
+interface BookProperty{
+    input:Book;
+}
+
+interface Form{
+    form:JSX.Element;
 }

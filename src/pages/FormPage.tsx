@@ -1,12 +1,12 @@
 
-import LoginForm from "../components/LoginForm"
+
 import Box from "../components/Box"
-export default function FormPage( ) {
+export default function FormPage( {form}:Form) {
 
     return (
         <>
         <Box>
-        <LoginForm />
+        {form}
         </Box>
         </>
     )
