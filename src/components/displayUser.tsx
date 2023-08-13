@@ -6,17 +6,17 @@ import { Spinner } from 'react-bootstrap'
 
 
 
-export default function  DisplayUser({userSearch}:encasedString){
+export default function  DisplayUser({string}:encasedString){
     
     const {user} = useContext(UserContext)
     const navigate = useNavigate()
     useEffect(() => {
         console.log('In useEffect')
-      if (!user.username) navigate('/')
       getUserData()
-    }, [user])
+    }, [string])
     const [userData, setUserData] = useState(<Spinner />);
     
+    let apiTarget = `http://127.0.0.1:5000/api/user-profile/${string}`
     
     async function getUserData() {
         let request ={
@@ -26,7 +26,7 @@ export default function  DisplayUser({userSearch}:encasedString){
                 'Authorization': 'Bearer ' + user.token
             }
         }
-        const response = await fetch(`http://127.0.0.1:5000/api/user-profile/${userSearch}`, request)
+        const response = await fetch(apiTarget, request)
         
         if (response.ok) {
             const data = await response.json();

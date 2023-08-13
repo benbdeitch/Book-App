@@ -2,7 +2,7 @@
 import Navbars from "./components/NavbarType1"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import MainPage from './pages/MainPage';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-dom';
 import Footer from "./components/Footer";
 import FormPage from "./pages/FormPage";
 import UserProfile from "./pages/UserProfile";
@@ -39,7 +39,7 @@ function App() {
       <Routes>
       <Route path='/login' element= {<FormPage form={<LoginForm/>} />} />
       <Route path='/' element={<MainPage />} />
-      <Route path='/user-profile/:username' element={<UserProfile  string= {userForUrl}/> }/>
+      <Route path='/user-profile/:string' element={<UserProfile/> }/>
       <Route path='/logout' element={<Logout/>} />
       <Route path='/show-list' element={<ListPage/>} />
       <Route path= '/book-search' element= {<BookSearchResultsPage/>} />

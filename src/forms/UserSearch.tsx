@@ -1,7 +1,6 @@
 import { FormEvent, useRef} from "react"
 
 import {useNavigate} from 'react-router-dom'
-
 export default function UserSearch(){
     const usernameField = useRef<HTMLInputElement>(null)
     
@@ -13,7 +12,6 @@ export default function UserSearch(){
         e.preventDefault();{
         console.log(usernameField.current!.value)
         navigate(`/user-profile/${usernameField.current!.value}`)
-            
         
     }
    

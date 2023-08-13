@@ -9,14 +9,14 @@ import Book from '../components/Book'
 export default function BookSearchForm() {
     const titleField= useRef<HTMLInputElement>(null)
     const authorField = useRef<HTMLInputElement>(null)
-    let { user } = useContext(UserContext)
+    let { user} = useContext(UserContext)
     const navigate = useNavigate()
-    user = user
+
     useEffect(() => {
        
       if (!user.username) navigate('/')
     }, [user])
-    }
+    
 
     const [bookData, setBookData] = useState(<Spinner />);
 
@@ -24,7 +24,19 @@ export default function BookSearchForm() {
 
     async function getBookSearch(e:FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        
+        let title:string|null = null; 
+        let author:string|null = null;
+        if (titleField.current){
+            title = titleField.current.value;
+        }
+        if (authorField.current){
+            author = authorField.current.value
+        }
+
+        if (!title &&!author){
+            setBookData(<><p>Error: Neither title nor author provided.</p></>);
+            return ("")
+        }
         let request ={
             method: "POST", 
             headers: {
@@ -32,11 +44,12 @@ export default function BookSearchForm() {
                 'Authorization': 'Bearer ' + user.token
             },
             body: JSON.stringify({
-                'title': 'Moby'
+                'title': title,
+                'author': author
             })
         }
         const response = await fetch('http://127.0.0.1:5000/api/book-search', request) 
-
+        setBookData(<Spinner />)
              
         if (response.ok) {
             const data = await response.json();
@@ -65,9 +78,10 @@ export default function BookSearchForm() {
   }
 
     return (
+        <>
     <div>
         <h2>Book Search Form</h2>
-        <form onSubmit={handleUserData} className="login-form">
+        <form onSubmit={getBookSearch} className="book-search-form">
         <label>
           Title
           <br />
@@ -77,12 +91,14 @@ export default function BookSearchForm() {
         <label>
           Author:
           <br />
-          <input type="password" ref={authorField} />
+          <input type="text" ref={authorField} />
         </label><br />
         <button>Search</button>
       </form>
 
 
                 </div>
+                {bookData}
+    </>
             )
     }
