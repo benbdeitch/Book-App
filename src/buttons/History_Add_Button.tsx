@@ -1,17 +1,18 @@
+import { useNavigate } from "react-router-dom"
 
 
 
 
 
 export default function History_Add_Button({string}:encasedString){
-
-    function sayIdName() {
-        alert(string)
+    const navigate = useNavigate()
+    function toBookPage(){
+        navigate(`/book/${string}`)
     }
 
     return(
         <>
-        <button onClick = {sayIdName}>
+        <button onClick = {toBookPage}>
             Add to History?
         </button>
         

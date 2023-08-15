@@ -5,6 +5,7 @@ import { Spinner } from 'react-bootstrap'
 import History_Add_Button from '../buttons/History_Add_Button'
 import Book from '../components/Book'
 
+import List_Add_Button from '../buttons/List_Add_Button'
 
 export default function BookSearchForm() {
     const titleField= useRef<HTMLInputElement>(null)
@@ -18,7 +19,7 @@ export default function BookSearchForm() {
     }, [user])
     
 
-    const [bookData, setBookData] = useState(<Spinner />);
+    const [bookData, setBookData] = useState(<></>);
 
 
 
@@ -48,7 +49,7 @@ export default function BookSearchForm() {
                 'author': author
             })
         }
-        const response = await fetch('http://127.0.0.1:5000/api/book-search', request) 
+        const response = await fetch(`http://127.0.0.1:5000/api/book-search`, request) 
         setBookData(<Spinner />)
              
         if (response.ok) {
@@ -63,6 +64,7 @@ export default function BookSearchForm() {
                                 <li id={book.googleId} key={book.googleId}>
                                     <Book input={book}></Book>
                                     <History_Add_Button string={book.googleId}/>
+                                    <List_Add_Button string = {book.googleId}/>
                                 </li>
                             ))}
 
@@ -79,7 +81,7 @@ export default function BookSearchForm() {
 
     return (
         <>
-    <div>
+    <div className = "Box">
         <h2>Book Search Form</h2>
         <form onSubmit={getBookSearch} className="book-search-form">
         <label>

@@ -1,14 +1,14 @@
 import  {useRef, useContext, FormEvent, useEffect } from 'react'
 import {useNavigate} from 'react-router-dom'
 import { UserContext } from '../contexts/UserProvider'
-import process from 'process'
 
-export default function LoginForm() {
+export default function RegisterForm() {
     const usernameField = useRef<HTMLInputElement>(null)
+    const emailField = useRef<HTMLInputElement>(null)
     const passwordField = useRef<HTMLInputElement>(null)
     const {user, setUser} = useContext(UserContext)
     const navigate = useNavigate()
-    console.log(user)
+
 
     useEffect(() => {
         console.log('In useEffect')
@@ -16,16 +16,10 @@ export default function LoginForm() {
     }, [user])
 
 
-    function resetForm(){
-        usernameField.current!.value = ''
-        passwordField.current!.value = ''
-    }
-
-
 
     async function handleUserData(e:FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        const response = await fetch(`http://127.0.0.1:5000/api/signin`, {
+        const response = await fetch(`http://127.0.0.1:5000/api/register`, {
         method: "POST", 
         headers: {
             'Content-Type': 'application/json',
@@ -33,6 +27,7 @@ export default function LoginForm() {
             body: JSON.stringify({
                 username: usernameField.current!.value, 
                 password: passwordField.current!.value,
+                email: emailField.current!.value
             }),
         }
         );
@@ -41,7 +36,7 @@ export default function LoginForm() {
             console.log(data);
             updateUserState(usernameField.current!.value, data["access_token"])
             
-        resetForm()
+
         } else window.alert('Invalid UserData');
     }
 
@@ -60,13 +55,19 @@ export default function LoginForm() {
 
     }
     return (
-    <div>
-        <h2>Login Form</h2>
+    <div className = "Box">
+        <h2>Register Form</h2>
         <form onSubmit={handleUserData} className="login-form">
         <label>
           Username:
           <br />
           <input type="text" ref={usernameField} required />
+        </label>
+        <br />
+        <label>
+          Email:
+          <br />
+          <input type="text" ref={emailField} required />
         </label>
         <br />
         <label>

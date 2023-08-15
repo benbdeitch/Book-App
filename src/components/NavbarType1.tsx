@@ -21,17 +21,25 @@ export default function Navbars() {
             <Nav.Link as={NavLink} to='/'>Home</Nav.Link>
             { user.username ? (
               <>
-              <Nav.Item >
-                <Nav.Link as={NavLink} to="/logout" className = 'mr-3'>
+          
+              <NavDropdown title="My Account" id="basic-nav-dropdown">
+                <NavDropdown.Item as={NavLink} to={`/user-profile/${user.username}`}>User Profile</NavDropdown.Item>
+                  <NavDropdown.Item as={NavLink} to={`/history/${user.username}`}>View Reading History</NavDropdown.Item>
+                 <NavDropdown.Item  as={NavLink} to="/show-list" className = 'mr-3'>Show Reading List</NavDropdown.Item>
+                 <NavDropdown.Divider />
+                 <NavDropdown.Item as={NavLink} to="/logout" className = 'mr-3'>
                    Logout
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item >
-                <Nav.Link as={NavLink} to="/show-list" className = 'mr-3'>
-                   View List
-                </Nav.Link>
-              </Nav.Item>
-               <Nav.Link  as={NavLink} to={`/user-profile/${user.username}`}>User Profile</Nav.Link>
+                 </NavDropdown.Item>
+               </NavDropdown>
+              <NavDropdown title="Friends" id="basic-nav-dropdown">
+                 <NavDropdown.Item as={NavLink} to={`/friends`}>View Friends List</NavDropdown.Item>
+                 <NavDropdown.Item as={NavLink} to={'/friends/friend-requests'}>
+                   Incoming Friend Requests
+                 </NavDropdown.Item>
+                 <NavDropdown.Item href="#action/3.3">Recommend a Book</NavDropdown.Item>
+                 
+               </NavDropdown>
+    
                <NavDropdown title="Manage List" id="basic-nav-dropdown">
                  <NavDropdown.Item href="#action/3.1">View Recommendations</NavDropdown.Item>
                  <NavDropdown.Item as={NavLink} to={'/book-search'}>

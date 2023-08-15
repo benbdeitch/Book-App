@@ -2,6 +2,7 @@ import  { useContext, useEffect, useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import { UserContext } from '../contexts/UserProvider'
 import { Spinner } from 'react-bootstrap'
+import FriendButton from '../buttons/Friend_Button'
 
 
 
@@ -40,6 +41,7 @@ export default function  DisplayUser({string}:encasedString){
     return (
         <>
        {userData}
+       {user.username!= string? <FriendButton string={string}/> : <></>}
         </>
     )
 

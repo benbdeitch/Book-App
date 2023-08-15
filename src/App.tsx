@@ -12,6 +12,11 @@ import { useContext, useEffect } from "react";
 import ListPage from "./pages/ListPage";
 import BookSearchResultsPage from "./pages/BookSearchResultsPage";
 import LoginForm from "./forms/LoginForm";
+import RegisterForm from "./forms/RegisterForm";
+import BookPage from "./pages/BookPage";
+import BookHistoryPage from "./pages/BookHistoryPage";
+import AllFriendsPage from "./pages/AllFriendsPage";
+import ActiveRequestsPage from "./pages/ActiveRequests";
 
 function App() {
 
@@ -39,9 +44,14 @@ function App() {
       <Routes>
       <Route path='/login' element= {<FormPage form={<LoginForm/>} />} />
       <Route path='/' element={<MainPage />} />
+      <Route path = '/register' element ={<RegisterForm/>} />
       <Route path='/user-profile/:string' element={<UserProfile/> }/>
       <Route path='/logout' element={<Logout/>} />
       <Route path='/show-list' element={<ListPage/>} />
+      <Route path = '/history/:username' element = {<BookHistoryPage/>}/>
+      <Route path='/book/:string' element={<BookPage/>}/>
+      <Route path= '/friends' element = {<AllFriendsPage/>}/>
+      <Route path= '/friends/friend-requests' element={<ActiveRequestsPage/>}/>
       <Route path= '/book-search' element= {<BookSearchResultsPage/>} />
       <Route path='*' element={<Navigate to='/' />} />
 

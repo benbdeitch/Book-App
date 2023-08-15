@@ -19,7 +19,9 @@ interface UserData{
 interface encasedString{
     string:string,
 }
-
+interface encasedStringArray{
+    array:string[]
+}
 interface Book{
     author?:string; 
     googleId:string;
@@ -28,6 +30,7 @@ interface Book{
     rating?:number; 
     review?:string;
     title: string;
+    message?: string
 }
 
 interface BookProperty{

@@ -2,16 +2,12 @@ import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../contexts/UserProvider"
 import { useNavigate } from "react-router-dom"
 import { Spinner } from 'react-bootstrap'
+import Book from "./Book"
+import History_Add_Button from "../buttons/History_Add_Button"
 
 
-interface BookEntry {
-    title:string,
-    author:string,
-    publishDate:string,
-    image:string,
-    priority:string,
-    id:string
-}
+
+
 export default function Booklist(){
     const {user} = useContext(UserContext)
     const navigate = useNavigate()
@@ -33,23 +29,19 @@ export default function Booklist(){
         })
         if (response.ok) {
             const data = await response.json();
-            const books = data["books"]
             console.log(data)
             setBookList(
                 <>
                 <ul>
-                    {books.map((item:BookEntry) => (
-                        <>
-                        <li id={"BookList"+item.id} key={item.id}>
-                            <div className="Box">
-                               <h3>Title: {item.title}</h3> 
-                               <p>Author: {item.author}</p>
-                               <p>Publication Date: {item.publishDate}</p>
-                               <p>Priority: {item.priority}</p>
-                            </div>
-                        </li>
-                        </>
-                    ))}
+                {data["books"]? <></>: <div className = "Box"><h5>No books in list.</h5></div>}
+                {data["books"] && data["books"].length>0&& data["books"].map((book:Book) => (
+                                <li id={book.googleId} key={book.googleId}>
+                                    <Book input={book}></Book>
+                                    {book.googleId ? 
+                                    <History_Add_Button string={book.googleId}/> : <> </>}
+                                   
+                                </li>
+                            ))}
                 </ul>
                 </>
             )
