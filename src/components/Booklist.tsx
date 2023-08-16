@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { Spinner } from 'react-bootstrap'
 import Book from "./Book"
 import History_Add_Button from "../buttons/History_Add_Button"
+import RemoveFromListButton from "../buttons/RemoveFromListButton"
 
 
 
@@ -37,9 +38,12 @@ export default function Booklist(){
                 {data["books"] && data["books"].length>0&& data["books"].map((book:Book) => (
                                 <li id={book.googleId} key={book.googleId}>
                                     <Book input={book}></Book>
-                                    {book.googleId ? 
-                                    <History_Add_Button string={book.googleId}/> : <> </>}
-                                   
+                                    {book.googleId ? <>
+                                    <History_Add_Button string={book.googleId}/>
+                                    <RemoveFromListButton string={book.googleId}/>
+                                    </>
+                                    : <> </>}
+
                                 </li>
                             ))}
                 </ul>
