@@ -3,12 +3,13 @@ import {useNavigate} from 'react-router-dom'
 import { UserContext } from '../contexts/UserProvider'
 import { Spinner } from 'react-bootstrap'
 import FriendButton from '../buttons/Friend_Button'
+import { levelContext } from '../contexts/UrlProvider'
 
 
 
 
 export default function  DisplayUser({string}:encasedString){
-    
+    const URL  = useContext(levelContext)
     const {user} = useContext(UserContext)
     const navigate = useNavigate()
     useEffect(() => {
@@ -17,7 +18,7 @@ export default function  DisplayUser({string}:encasedString){
     }, [string])
     const [userData, setUserData] = useState(<Spinner />);
     
-    let apiTarget = `http://127.0.0.1:5000/api/user-profile/${string}`
+    let apiTarget = `${URL}api/user-profile/${string}`
     
     async function getUserData() {
         let request ={

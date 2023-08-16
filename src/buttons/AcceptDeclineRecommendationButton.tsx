@@ -1,9 +1,11 @@
 import { useContext, useState } from "react"
 import { UserContext } from "../contexts/UserProvider"
+import { levelContext } from "../contexts/UrlProvider"
 
 
 export default function AcceptDeclineRecommendationButton({string}:encasedString){
     const {user} = useContext(UserContext)
+    const URL  = useContext(levelContext)
     let buttonOptions= [ <>
         <button onClick={acceptRecommendation}> Accept</button>
         <button onClick={declineRecommendation}>Decline</button>
@@ -11,7 +13,7 @@ export default function AcceptDeclineRecommendationButton({string}:encasedString
         <div className="Box"><p>Accepted Recommendation</p></div>, <div className="Box"><p>Declined Recommendation</p></div>]
     const [buttonState, setButtonState] = useState(buttonOptions[0])
     async function acceptRecommendation(){
-        let response = await fetch(`http://127.0.0.1:5000/api/accept-rec`,{
+        let response = await fetch(`${URL}api/accept-rec`,{
                 method: "POST", 
                 headers: {
                     'Content-Type': 'application/json',
@@ -26,7 +28,7 @@ export default function AcceptDeclineRecommendationButton({string}:encasedString
     }
 
     async function declineRecommendation(){
-        let response = await fetch(`http://127.0.0.1:5000/api/deny-rec`,{
+        let response = await fetch(`${URL}api/deny-rec`,{
             method: "POST", 
             headers: {
                 'Content-Type': 'application/json',

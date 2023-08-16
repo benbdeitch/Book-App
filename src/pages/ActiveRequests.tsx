@@ -2,11 +2,13 @@ import { useContext, useState, useEffect } from "react"
 import { Spinner } from "react-bootstrap"
 import RequestsList from "../components/RequestsList"
 import { UserContext } from "../contexts/UserProvider"
+import { levelContext } from "../contexts/UrlProvider"
 
 
 
 
 export default function ActiveRequestsPage() {
+    const URL  = useContext(levelContext)
     const {user} = useContext(UserContext)
     const [requestList, setRequestList] = useState(<Spinner/>)
     useEffect( () => {
@@ -15,7 +17,7 @@ export default function ActiveRequestsPage() {
     }, [user])
 
     async function loadRequests(){
-        let response = await fetch('http://127.0.0.1:5000/api/friend-requests', {
+        let response = await fetch(`${URL}api/friend-requests`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

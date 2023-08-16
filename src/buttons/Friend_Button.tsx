@@ -2,13 +2,14 @@ import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { UserContext } from "../contexts/UserProvider"
 import { Spinner } from "react-bootstrap"
+import { levelContext } from "../contexts/UrlProvider"
 
 
 
 
 export default function FriendButton({string}:encasedString){
     let response
-  
+    const URL  = useContext(levelContext)
     const buttonOptions:JSX.Element[] = [<Spinner/>, 
                                 <button className="disabledFriendButton">Friend Request Sent</button>,
                                 <button className="sendFriendRequest" onClick ={makeRequest}>Send Friend Request?</button>,
@@ -21,11 +22,12 @@ export default function FriendButton({string}:encasedString){
     const {user} = useContext(UserContext)
     const navigate = useNavigate()
     useEffect(() => {
+        if(!user)(navigate('/'))
         checkFriendship()
        
     }, [user] )
         async function makeRequest(){
-            response = await fetch(`http://127.0.0.1:5000/api/make-request`,{
+            response = await fetch(`${URL}api/make-request`,{
                 method: "POST", 
                 headers: {
                     'Content-Type': 'application/json',
@@ -39,7 +41,7 @@ export default function FriendButton({string}:encasedString){
             }
         }
         async function removeFriend(){
-            response = await fetch(`http://127.0.0.1:5000/api/remove-friend`,{
+            response = await fetch(`${URL}api/remove-friend`,{
                 method: "POST", 
                 headers: {
                     'Content-Type': 'application/json',
@@ -54,7 +56,7 @@ export default function FriendButton({string}:encasedString){
         }
 
         async function acceptRequest(){
-            response = await fetch(`http://127.0.0.1:5000/api/accept-request`,{
+            response = await fetch(`${URL}api/accept-request`,{
                 method: "POST", 
                 headers: {
                     'Content-Type': 'application/json',
@@ -68,7 +70,7 @@ export default function FriendButton({string}:encasedString){
             }
         }
         async function declineRequest(){
-            response = await fetch(`http://127.0.0.1:5000/api/decline-request`,{
+            response = await fetch(`${URL}api/decline-request`,{
                 method: "POST", 
                 headers: {
                     'Content-Type': 'application/json',
@@ -82,7 +84,7 @@ export default function FriendButton({string}:encasedString){
             }
         }
         async function checkFriendship(){
-             response = await fetch(`http://127.0.0.1:5000/api/isfriend/${string}`,{
+             response = await fetch(`${URL}api/isfriend/${string}`,{
                 method: "GET", 
                 headers: {
                     'Content-Type': 'application/json',

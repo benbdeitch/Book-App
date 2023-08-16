@@ -1,8 +1,10 @@
 import  {useRef, useContext, FormEvent, useEffect } from 'react'
 import {useNavigate} from 'react-router-dom'
 import { UserContext } from '../contexts/UserProvider'
+import { levelContext } from '../contexts/UrlProvider'
 
 export default function RegisterForm() {
+    const URL  = useContext(levelContext)
     const usernameField = useRef<HTMLInputElement>(null)
     const emailField = useRef<HTMLInputElement>(null)
     const passwordField = useRef<HTMLInputElement>(null)
@@ -19,7 +21,7 @@ export default function RegisterForm() {
 
     async function handleUserData(e:FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        const response = await fetch(`http://127.0.0.1:5000/api/register`, {
+        const response = await fetch(`${URL}api/register`, {
         method: "POST", 
         headers: {
             'Content-Type': 'application/json',

@@ -3,6 +3,7 @@ import { UserContext } from "../contexts/UserProvider"
 import Book from "./Book"
 import { Spinner } from "react-bootstrap"
 import { useNavigate, useParams } from "react-router-dom"
+import { levelContext } from "../contexts/UrlProvider"
 
 
 
@@ -11,6 +12,7 @@ export default function BookHistory(){
     const {username} = useParams()
     const navigate = useNavigate()
     const [readHistory, setReadHistory] = useState(<Spinner/>)
+    const URL  = useContext(levelContext)
     useEffect(() => {
         
         if (!user.username){ navigate('/')}
@@ -32,7 +34,7 @@ export default function BookHistory(){
             },
                
             }
-            const response = await fetch(`http://127.0.0.1:5000/api/history/${username}`, request)
+            const response = await fetch(`${URL}api/history/${username}`, request)
 
             if (response.ok){
                 const data = await response.json()

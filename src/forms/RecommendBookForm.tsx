@@ -1,16 +1,16 @@
 import  {useRef, useContext, FormEvent, useEffect, useState } from 'react'
-import {useNavigate} from 'react-router-dom'
 import { UserContext } from '../contexts/UserProvider'
 import { Spinner } from 'react-bootstrap'
+import { levelContext } from '../contexts/UrlProvider'
 
 
 export default function RecommendForm({string}:encasedString) {
     const friendField = useRef<HTMLSelectElement>(null)
     const messageField = useRef<HTMLInputElement>(null)
     const {user} = useContext(UserContext)
-    const navigate = useNavigate()
-
+    const URL  = useContext(levelContext)
     const [formState, setFormState] = useState(<Spinner/>)
+    
     useEffect(() => {
         console.log('In useEffect')
         getFriendData()
@@ -31,7 +31,7 @@ export default function RecommendForm({string}:encasedString) {
             }
         }
 
-        const response = await fetch('http://127.0.0.1:5000/api/all-friends', request)
+        const response = await fetch(`${URL}api/all-friends`, request)
 
         if (response.ok){
             const data = await response.json()
@@ -80,7 +80,7 @@ export default function RecommendForm({string}:encasedString) {
                 }),
             }
             console.log(request["body"])
-        const response = await fetch(`http://127.0.0.1:5000/api/recommend-book`,request);
+        const response = await fetch(`${URL}api/recommend-book`,request);
         if (response.ok) {
             const data = await response.json();
             console.log(data);

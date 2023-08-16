@@ -1,9 +1,13 @@
+import { useContext, useState, useEffect } from "react"
+import { levelContext } from "../contexts/UrlProvider"
+import { UserContext } from "../contexts/UserProvider"
+import FriendButton from "./Friend_Button"
 
 
 export default function Recommend_Book_Button(){
     const {user} = useContext(UserContext)
-    const [friendData, setFriendData] = useState()
-
+    const [friendData, setFriendData] = useState(<></>)
+    const URL  = useContext(levelContext)
 
     useEffect(() => {
 
@@ -20,7 +24,7 @@ export default function Recommend_Book_Button(){
             }
         }
 
-        const response = await fetch('http://127.0.0.1:5000/api/all-friends', request)
+        const response = await fetch(`${URL}api/all-friends`, request)
 
         if (response.ok){
             const data = await response.json()
@@ -37,5 +41,10 @@ export default function Recommend_Book_Button(){
             </>)
         }
     }
+
+    return (<>
+        {friendData}
+        </>
+    )
 
 }

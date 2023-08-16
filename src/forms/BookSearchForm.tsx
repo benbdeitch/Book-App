@@ -6,12 +6,14 @@ import History_Add_Button from '../buttons/History_Add_Button'
 import Book from '../components/Book'
 
 import List_Add_Button from '../buttons/List_Add_Button'
+import { levelContext } from '../contexts/UrlProvider'
 
 export default function BookSearchForm() {
     const titleField= useRef<HTMLInputElement>(null)
     const authorField = useRef<HTMLInputElement>(null)
     let { user} = useContext(UserContext)
     const navigate = useNavigate()
+    const URL  = useContext(levelContext)
 
     useEffect(() => {
        
@@ -49,7 +51,7 @@ export default function BookSearchForm() {
                 'author': author
             })
         }
-        const response = await fetch(`http://127.0.0.1:5000/api/book-search`, request) 
+        const response = await fetch(`${URL}api/book-search`, request) 
         setBookData(<Spinner />)
              
         if (response.ok) {

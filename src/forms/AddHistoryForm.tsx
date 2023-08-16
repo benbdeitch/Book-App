@@ -1,12 +1,14 @@
 import { useRef, useContext, useEffect, FormEvent } from "react"
 import { UserContext } from "../contexts/UserProvider"
 import { useNavigate } from "react-router-dom"
+import { levelContext } from "../contexts/UrlProvider"
 
 
 
 
 
 export default function HistoryForm({string}:encasedString){
+    const URL  = useContext(levelContext)
     const navigate = useNavigate()
     const ratingField = useRef<HTMLInputElement>(null)
     const reviewField = useRef<HTMLInputElement>(null)
@@ -26,7 +28,7 @@ export default function HistoryForm({string}:encasedString){
     async function addToHistory(e:FormEvent<HTMLFormElement>) {
         e.preventDefault();
         console.log(user.token)
-        const response = await fetch(`http://127.0.0.1:5000/api/add-history`, {
+        const response = await fetch(`${URL}api/add-history`, {
         method: "POST", 
         headers: {
             'Content-Type': 'application/json',

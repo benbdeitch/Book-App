@@ -1,12 +1,13 @@
 import { useContext } from "react"
 import { UserContext } from "../contexts/UserProvider"
-import process from "process"
+import { levelContext } from "../contexts/UrlProvider"
+
 
 
 
 
 export default function List_Add_Button({string}:encasedString){
-
+    const URL  = useContext(levelContext)
     const {user} = useContext(UserContext)
     async function addToReadingList() {
         const request = {
@@ -22,7 +23,7 @@ export default function List_Add_Button({string}:encasedString){
 
         }
     
-        const response = await fetch(`http://127.0.0.1:5000/api/add-book-list`, request
+        const response = await fetch(`${URL}api/add-book-list`, request
         )
 
         if (response.ok){

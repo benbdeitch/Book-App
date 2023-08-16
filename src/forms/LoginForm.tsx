@@ -1,9 +1,11 @@
 import  {useRef, useContext, FormEvent, useEffect } from 'react'
 import {useNavigate} from 'react-router-dom'
 import { UserContext } from '../contexts/UserProvider'
-import process from 'process'
+import { levelContext } from '../contexts/UrlProvider'
 
 export default function LoginForm() {
+    const URL  = useContext(levelContext)
+    console.log(URL)
     const usernameField = useRef<HTMLInputElement>(null)
     const passwordField = useRef<HTMLInputElement>(null)
     const {user, setUser} = useContext(UserContext)
@@ -25,7 +27,7 @@ export default function LoginForm() {
 
     async function handleUserData(e:FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        const response = await fetch(`http://127.0.0.1:5000/api/signin`, {
+        const response = await fetch(`${URL}api/signin`, {
         method: "POST", 
         headers: {
             'Content-Type': 'application/json',

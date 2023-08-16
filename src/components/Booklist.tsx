@@ -5,12 +5,14 @@ import { Spinner } from 'react-bootstrap'
 import Book from "./Book"
 import History_Add_Button from "../buttons/History_Add_Button"
 import RemoveFromListButton from "../buttons/RemoveFromListButton"
+import { levelContext } from "../contexts/UrlProvider"
 
 
 
 
 export default function Booklist(){
     const {user} = useContext(UserContext)
+    const URL  = useContext(levelContext)
     const navigate = useNavigate()
     useEffect(() => {
         
@@ -19,7 +21,7 @@ export default function Booklist(){
     }, [])
     const [bookList, setBookList] = useState(<Spinner />);
     async function getBookList() {
-        const response = await fetch('http://127.0.0.1:5000/api/get-book-list', 
+        const response = await fetch(`${URL}api/get-book-list`, 
         {
             method: 'GET',
             headers: {

@@ -2,13 +2,15 @@ import { useContext, useState, useEffect } from "react"
 import { Spinner } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import { UserContext } from "../contexts/UserProvider"
-import Friend_Button from "../buttons/Friend_Button"
+
 import FriendButton from "../buttons/Friend_Button"
+import { levelContext } from "../contexts/UrlProvider"
 
 
 
 export default function AllFriendsPage(){
     const {user} = useContext(UserContext)
+    const URL  = useContext(levelContext)
     const [friendData, setFriendData] = useState(<Spinner/>)
     const navigate = useNavigate()
     useEffect( () => {
@@ -28,7 +30,7 @@ export default function AllFriendsPage(){
             }
         }
 
-        const response = await fetch('http://127.0.0.1:5000/api/all-friends', request)
+        const response = await fetch(`${URL}api/all-friends`, request)
 
         if (response.ok){
             const data = await response.json()

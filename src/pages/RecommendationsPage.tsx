@@ -3,8 +3,10 @@ import { Spinner } from "react-bootstrap"
 import Book from "../components/Book"
 import { UserContext } from "../contexts/UserProvider"
 import AcceptDeclineRecommendationButton from "../buttons/AcceptDeclineRecommendationButton"
+import { levelContext } from "../contexts/UrlProvider"
 
 export default function RecommendationsPage(){
+    const URL  = useContext(levelContext)
     const [recState, setRecState] = useState(<Spinner/>)
     const {user} = useContext(UserContext)
     useEffect(()=>{
@@ -15,7 +17,7 @@ export default function RecommendationsPage(){
 
     async function getRecommendations(){
     
-        const response = await fetch(`http://127.0.0.1:5000/api/my-recommendations`,  {
+        const response = await fetch(`${URL}api/my-recommendations`,  {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

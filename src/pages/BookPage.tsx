@@ -5,11 +5,13 @@ import { UserContext } from "../contexts/UserProvider";
 import { Spinner } from "react-bootstrap";
 import AddHistoryForm from "../forms/AddHistoryForm";
 import RecommendBookForm from "../forms/RecommendBookForm";
+import { levelContext } from "../contexts/UrlProvider";
 
 
 
 
 export default function bookPage(){
+    const URL  = useContext(levelContext)
     let{string:string} = useParams()
     const navigate = useNavigate()
     const [bookData, setBookData] = useState(<Spinner/>)
@@ -25,7 +27,7 @@ export default function bookPage(){
 
     async function getBook(string:string){
         
-        const response = await fetch(`http://127.0.0.1:5000/api/book/${string}`,  {
+        const response = await fetch(`${URL}api/book/${string}`,  {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
