@@ -16,9 +16,9 @@ export default function Book({input}:BookProperty):JSX.Element{
             Title: {input.title}<br/>
             Author: {input.author ?? "Unknown"}<br/>
             Publication Date: {input.publishDate ?? "No Date Provided"}
-            {input.rating? <>`Rating: ${input.rating}/10`<br/></>: null}
-            {input.review? <>`Rating: ${input.review}`<br/></>: null}
-            {input.message? <>`Message: ${input.message}`<br/></>: null}<br/>
+            {input.rating? <>Rating: {input.rating}/10<br/></>: null}
+            {input.review? <>Review: {input.review}<br/></>: null}
+            {input.message? <>Message: {input.message}<br/></>: null}<br/>
             {input.from? `From: ${input.from}`: null}
             </div>
         </div>
