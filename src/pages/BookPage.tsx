@@ -4,6 +4,7 @@ import { useEffect, useContext, useState } from "react";
 import { UserContext } from "../contexts/UserProvider";
 import { Spinner } from "react-bootstrap";
 import AddHistoryForm from "../forms/AddHistoryForm";
+import RecommendBookForm from "../forms/RecommendBookForm";
 
 
 
@@ -36,6 +37,7 @@ export default function bookPage(){
             setBookData(<>
             <Book input={data}/>
             <AddHistoryForm string = {string}/>
+            <RecommendBookForm string = {string}/>
             </>)       }
 
 

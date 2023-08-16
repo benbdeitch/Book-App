@@ -31,6 +31,8 @@ interface Book{
     review?:string;
     title: string;
     message?: string
+    from?: string
+    requestId?:string
 }
 
 interface BookProperty{

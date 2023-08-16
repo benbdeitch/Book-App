@@ -24,10 +24,11 @@ export default function ActiveRequestsPage() {
         })
         if (response.ok){
             const data = await response.json()
-
-            setRequestList(<>{data["requests"].length>0 
-            ?<RequestsList array={data["requests"]}/>:
-            <div className="Box"><h1>No Requests</h1></div>}</> )
+            console.log(data)
+            let array = data["requests"]
+            setRequestList(<>{array.length>0 
+            && array.map((item:string)=> { return <RequestsList string={item}/>})}
+            </> )
         }
 
 
@@ -38,6 +39,8 @@ export default function ActiveRequestsPage() {
         <div className="Box">
         <h1>Incoming Friend Requests</h1>
         </div>
+
         {requestList}
+  
     </>)
 }

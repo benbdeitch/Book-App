@@ -1,24 +1,16 @@
-import { useContext, useState, useEffect } from "react"
-import { Spinner } from "react-bootstrap"
-import { useNavigate } from "react-router-dom"
-import { UserContext } from "../contexts/UserProvider"
-import Friend_Button from "../buttons/Friend_Button"
-import FriendButton from "../buttons/Friend_Button"
 
 
-
-export default function AllFriendsPage(){
+export default function Recommend_Book_Button(){
     const {user} = useContext(UserContext)
-    const [friendData, setFriendData] = useState(<Spinner/>)
-    const navigate = useNavigate()
-    useEffect( () => {
+    const [friendData, setFriendData] = useState()
 
-        if (!user.username){navigate('/')}
+
+    useEffect(() => {
+
         getFriendData()
+    }, [user])
 
-    },[user])
 
-    
     async function getFriendData(){
         const request = {
             method: 'GET',
@@ -36,7 +28,7 @@ export default function AllFriendsPage(){
             setFriendData(<>
             {data["friends"] && data["friends"].length > 0 && 
             data["friends"].map((friend:UserData) => (
-                <div className = "Box" key={friend.username}>
+                <div className = "Box">
                     <p>Username: {friend.username}</p>
                     <FriendButton string={friend.username}/>
                 </div>
@@ -45,19 +37,5 @@ export default function AllFriendsPage(){
             </>)
         }
     }
-
-    
-    return(
-        <>
-        <div className="Box">
-            <h1> Friends List</h1>
-        </div>
-        <div className="Box">
-            {friendData}
-        </div>
-    </>
-    )
-
-
 
 }

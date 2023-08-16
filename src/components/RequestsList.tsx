@@ -1,17 +1,17 @@
+import FriendButton from "../buttons/Friend_Button";
 
 
 
-export default function RequestsList({array}:encasedStringArray){
+export default function RequestsList({string}:encasedString){
 
 
     return(
         <>
-        {array && array.length>0 && array.map((item) => {
+          
             <div className="Box">
-                <h5>{item}</h5>
-            </div>}
-            )
-            }
+                <h5>From: {string}</h5>
+                <FriendButton  string={string}/>
+            </div>
     
             </>)
 

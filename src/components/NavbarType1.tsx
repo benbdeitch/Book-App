@@ -41,7 +41,7 @@ export default function Navbars() {
                </NavDropdown>
     
                <NavDropdown title="Manage List" id="basic-nav-dropdown">
-                 <NavDropdown.Item href="#action/3.1">View Recommendations</NavDropdown.Item>
+                 <NavDropdown.Item as={NavLink} to={'/recommendations'}>View Recommendations</NavDropdown.Item>
                  <NavDropdown.Item as={NavLink} to={'/book-search'}>
                    Search by Book 
                  </NavDropdown.Item>

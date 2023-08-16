@@ -17,6 +17,7 @@ import BookPage from "./pages/BookPage";
 import BookHistoryPage from "./pages/BookHistoryPage";
 import AllFriendsPage from "./pages/AllFriendsPage";
 import ActiveRequestsPage from "./pages/ActiveRequests";
+import RecommendationsPage from "./pages/RecommendationsPage";
 
 function App() {
 
@@ -27,7 +28,7 @@ function App() {
       if (testUser!==null){
          userForUrl = JSON.parse(testUser);
       }
-      console.log(userForUrl)
+ 
       useEffect(() =>{
         if (!user.token && testToken && testUser){
           setUser({
@@ -39,6 +40,7 @@ function App() {
       })
   return (
     <>
+    <div className ="mainSection">
     <BrowserRouter>
       <Navbars/>
       <Routes>
@@ -54,10 +56,13 @@ function App() {
       <Route path= '/friends/friend-requests' element={<ActiveRequestsPage/>}/>
       <Route path= '/book-search' element= {<BookSearchResultsPage/>} />
       <Route path='*' element={<Navigate to='/' />} />
-
+      <Route path='/recommendations' element={<RecommendationsPage/>}/>
       </Routes>
-      <Footer/>
+      
+      
       </BrowserRouter>
+      </div>
+      <Footer/>
     </>
   )
 }
