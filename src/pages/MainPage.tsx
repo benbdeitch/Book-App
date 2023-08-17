@@ -5,12 +5,16 @@ export default function MainPage(){
 
 
     return (
-            <div className="Box">
+            <div className="Box" >
                 <h1> Welcome to an app for Book Recommendations!</h1>
 
                 <p>Manage your reading list by adding books through the book search. </p>
                 <br/>
                 <p>Click on a Book's image, to be taken to a page to recommend the book, or add it to your history.</p>
+                <br/>
+                <p>Search for a user's profile through the search bar. Once you find the profile, you can request to add them as a friend. </p>
+                <br/>
+                <p>Friends can view each other's reading list and book history. In addition, you can send recommendations for books to add to each other's reading lists. </p>
             </div>
            
  )

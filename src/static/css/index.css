@@ -8,6 +8,11 @@ body{
 
 .mainSection{
   min-height:80%;
+ 
+  top: 0px;
+  width:100%;
+  max-height: fit-content;
+  padding-bottom:14rem;
 }
 #navbar{
   display:flex; 
@@ -32,9 +37,11 @@ body{
   font-size:0.5rem;
   bottom:0px;
   padding:1rem;
+  max-height:20%;
   border-top:2px solid white;
-
+  position:fixed;
     bottom:0%;
     width:100%;
     margin-top:4rem;
+
 }
