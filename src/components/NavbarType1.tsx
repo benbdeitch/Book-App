@@ -36,7 +36,7 @@ export default function Navbars() {
                  <NavDropdown.Item as={NavLink} to={'/friends/friend-requests'}>
                    Incoming Friend Requests
                  </NavDropdown.Item>
-                 <NavDropdown.Item href="#action/3.3">Recommend a Book</NavDropdown.Item>
+
                  
                </NavDropdown>
     
@@ -44,11 +44,6 @@ export default function Navbars() {
                  <NavDropdown.Item as={NavLink} to={'/recommendations'}>View Recommendations</NavDropdown.Item>
                  <NavDropdown.Item as={NavLink} to={'/book-search'}>
                    Search by Book 
-                 </NavDropdown.Item>
-                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                 <NavDropdown.Divider />
-                 <NavDropdown.Item href="#action/3.4">
-                   Separated link
                  </NavDropdown.Item>
                </NavDropdown>
                <UserSearch />

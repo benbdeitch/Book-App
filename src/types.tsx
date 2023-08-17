@@ -33,6 +33,7 @@ interface Book{
     message?: string
     from?: string
     requestId?:string
+    date?: Date
 }
 
 interface BookProperty{

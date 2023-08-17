@@ -1,13 +1,18 @@
-import Flexbox from "../components/Flexbox"
-import {v4 as uuidv4} from 'uuid';
+
 
 export default function MainPage(){
 
 
 
     return (
-            
-            <Flexbox Items={[{string: "hi", key: uuidv4()}, {string: "hello", key: uuidv4()}, {string:"How do you do", key:uuidv4()}, {string: "342", key:uuidv4()}]}/>
+            <div className="Box">
+                <h1> Welcome to an app for Book Recommendations!</h1>
+
+                <p>Manage your reading list by adding books through the book search. </p>
+                <br/>
+                <p>Click on a Book's image, to be taken to a page to recommend the book, or add it to your history.</p>
+            </div>
+           
  )
 
 

@@ -36,7 +36,7 @@ export default function HistoryForm({string}:encasedString){
         },
             body: JSON.stringify({
                 rating: ratingField.current!.value, 
-                review: reviewField.current!.value,
+                review: reviewField.current!.value.slice(0,10000),
                 googleId: string
             }),
         }
