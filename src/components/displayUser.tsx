@@ -1,5 +1,5 @@
 import  { useContext, useEffect, useState} from 'react'
-import {useNavigate} from 'react-router-dom'
+
 import { UserContext } from '../contexts/UserProvider'
 import { Spinner } from 'react-bootstrap'
 import FriendButton from '../buttons/Friend_Button'
@@ -11,7 +11,7 @@ import { levelContext } from '../contexts/UrlProvider'
 export default function  DisplayUser({string}:encasedString){
     const URL  = useContext(levelContext)
     const {user} = useContext(UserContext)
-    const navigate = useNavigate()
+
     useEffect(() => {
         console.log('In useEffect')
       getUserData()
