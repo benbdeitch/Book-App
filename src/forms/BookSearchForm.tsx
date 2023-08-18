@@ -11,6 +11,7 @@ import { levelContext } from '../contexts/UrlProvider'
 export default function BookSearchForm() {
     const titleField= useRef<HTMLInputElement>(null)
     const authorField = useRef<HTMLInputElement>(null)
+    const entryField = useRef<HTMLInputElement>(null)
     let { user} = useContext(UserContext)
     const navigate = useNavigate()
     const URL  = useContext(levelContext)
@@ -29,13 +30,18 @@ export default function BookSearchForm() {
         e.preventDefault()
         let title:string|null = null; 
         let author:string|null = null;
+        let howManyEntries:string|null = null;
         if (titleField.current){
             title = titleField.current.value;
         }
         if (authorField.current){
             author = authorField.current.value
         }
-
+        if (entryField.current){
+            if (entryField.current.value){
+                howManyEntries = entryField.current.value
+            }
+        }
         if (!title &&!author){
             setBookData(<><p>Error: Neither title nor author provided.</p></>);
             return ("")
@@ -48,9 +54,11 @@ export default function BookSearchForm() {
             },
             body: JSON.stringify({
                 'title': title,
-                'author': author
+                'author': author,
+                'howManyEntries': howManyEntries
             })
         }
+        console.log(request)
         const response = await fetch(`${URL}api/book-search`, request) 
         setBookData(<Spinner />)
              
@@ -97,6 +105,13 @@ export default function BookSearchForm() {
           <br />
           <input type="text" ref={authorField} />
         </label><br />
+
+        <label>
+            #Entries:
+            <br />
+            <input type="number" ref={entryField}/>
+        </label>
+        <br/>
         <button>Search</button>
       </form>
 
