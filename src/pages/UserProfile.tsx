@@ -1,7 +1,6 @@
 
 
 
-import Box from "../components/Box"
 import DisplayUser from "../components/displayUser"
 import { useNavigate, useParams } from "react-router-dom"
 import { UserContext } from "../contexts/UserProvider"
@@ -23,10 +22,12 @@ export default function UserProfile(){
     }
     return (
         <>
-        <Box>
+        <div className="Box">
         <DisplayUser string= {string}/>
-        </Box>
+        </div>
+        <div className="Box">
         <button onClick={toHistoryPage}>To {string}'s History</button>
+        </div>
         </>
     )    
 }

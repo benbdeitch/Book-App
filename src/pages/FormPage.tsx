@@ -1,13 +1,13 @@
 
 
-import Box from "../components/Box"
+
 export default function FormPage( {form}:Form) {
 
     return (
         <>
-        <Box>
+        <div className="Box">
         {form}
-        </Box>
+        </div>
         </>
     )
   }
