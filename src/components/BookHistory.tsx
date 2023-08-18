@@ -21,10 +21,7 @@ export default function BookHistory(){
         }
       }, [])
 
-      function updateReadingHistory(){
-        if (username)
-        getReadingHistory(username)
-      }
+
     async function getReadingHistory(username:string){
         let request = {
             method: "GET", 
@@ -54,7 +51,7 @@ export default function BookHistory(){
         return (
             <>
             {readHistory}
-            <button onClick={updateReadingHistory}> refresh</button>
+
             </>
         )
 
