@@ -39,7 +39,10 @@ export default function RegisterForm() {
             updateUserState(usernameField.current!.value, data["access_token"])
             
 
-        } else window.alert('Invalid UserData');
+        } else {
+            const data = await response.json();
+            window.alert(Object.keys(data).reduce((string, key)=> (string + "\n" +key + ": " + data[key])));
+        }
     }
 
 

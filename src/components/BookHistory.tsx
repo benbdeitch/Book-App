@@ -35,6 +35,7 @@ export default function BookHistory(){
 
             if (response.ok){
                 const data = await response.json()
+                console.log(data)
                 setReadHistory(
                     <>
                     <ul>

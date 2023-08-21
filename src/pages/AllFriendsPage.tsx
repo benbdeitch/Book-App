@@ -12,6 +12,7 @@ export default function AllFriendsPage(){
     const {user} = useContext(UserContext)
     const URL  = useContext(levelContext)
     const [friendData, setFriendData] = useState(<Spinner/>)
+
     const navigate = useNavigate()
     useEffect( () => {
 
@@ -20,7 +21,10 @@ export default function AllFriendsPage(){
 
     },[user])
 
-    
+    function toFriendProfile(friend:string){
+        console.log(`${URL}history/${friend}`)
+        navigate(`${URL}history/${friend}`)
+    }
     async function getFriendData(){
         const request = {
             method: 'GET',
@@ -38,7 +42,7 @@ export default function AllFriendsPage(){
             setFriendData(<>
             {data["friends"] && data["friends"].length > 0 && 
             data["friends"].map((friend:UserData) => (
-                <div className = "Box" key={friend.username}>
+                <div onClick={()=> {toFriendProfile(friend.username)}} className = "Box" key={friend.username}>
                     <p>Username: {friend.username}</p>
                     <FriendButton string={friend.username}/>
                 </div>
