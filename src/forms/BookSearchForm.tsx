@@ -43,7 +43,7 @@ export default function BookSearchForm() {
             }
         }
         if (!title &&!author){
-            setBookData(<><p>Error: Neither title nor author provided.</p></>);
+            setBookData(<><p className ="Box">Error: Neither title nor author provided.</p></>);
             return ("")
         }
         let request ={
@@ -67,7 +67,7 @@ export default function BookSearchForm() {
             console.log(data);
             setBookData( 
                 <>
-                <h1>Search Page</h1>
+                <h1 className="Box">Search Page</h1>
                     {data["books"].length> 0 && (
                         <ul>
                             {data["books"].map((book:Book) => (
@@ -81,7 +81,7 @@ export default function BookSearchForm() {
                         </ul>
                     )}
                 </>)
-        } else setBookData(<><h1>No books Found</h1></>);
+        } else setBookData(<div className="Box"><h1>No books Found</h1></div>);
         
 
 

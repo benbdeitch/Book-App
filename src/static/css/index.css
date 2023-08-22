@@ -6,6 +6,10 @@ body{
   background-repeat:no-repeat;
 }
 
+.Flexbox {
+  display:flex;
+  
+}
 .mainSection{
   min-height:80%;
  
@@ -20,6 +24,9 @@ body{
 
 }
 
+.smallBox {
+  height: min-content;
+}
 .Box {
   background-color:black;
   color:white; 

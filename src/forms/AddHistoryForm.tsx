@@ -53,7 +53,7 @@ export default function HistoryForm({string}:encasedString){
 
     return( 
 
-        <div className = "Box">
+        <div className = "Box  smallBox">
         <h2>Review Form</h2>
         <form onSubmit={addToHistory} className="login-form">
         <label>

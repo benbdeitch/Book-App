@@ -41,7 +41,7 @@ export default function RegisterForm() {
 
         } else {
             const data = await response.json();
-            window.alert(Object.keys(data).reduce((string, key)=> (string + "\n" +key + ": " + data[key])));
+            window.alert(Object.keys(data).reduce((string, key)=> (string + "\n" + data[key]), ""));
         }
     }
 

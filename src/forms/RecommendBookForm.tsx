@@ -36,7 +36,7 @@ export default function RecommendForm({string}:encasedString) {
         if (response.ok){
             const data = await response.json()
             console.log(data)
-            setFormState(<div className="Box">
+            setFormState(<div className="Box  smallBox">
                 <h2>Recommend Form</h2>
                 <form onSubmit={handleRecommendData} className="recommend-form">
                 <label>
@@ -56,7 +56,7 @@ export default function RecommendForm({string}:encasedString) {
                     })}
                     </select>
 
-                </label><br />
+                </label><br /><br />
                 <button>Recommend Book</button>
               </form>
         
