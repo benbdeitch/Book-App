@@ -39,7 +39,10 @@ export default function BookSearchForm() {
         }
         if (entryField.current){
             if (entryField.current.value){
-                howManyEntries = entryField.current.value
+                howManyEntries = entryField.current.value 
+            }
+            else{
+                 howManyEntries = "10"
             }
         }
         if (!title &&!author){
