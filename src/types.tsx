@@ -1,6 +1,11 @@
 interface LoggedUser{
     username: string;
-    token: string
+    token: string;
+    readingList: ReadingListEntry[];
+    recommendations: BookRecommendation[];
+    friends: Friend[];
+    readingHistory: HistoryEntry[];
+
 }
 
 interface SearchUserValues{
@@ -11,6 +16,9 @@ interface SearchUserValues{
 
 }
 
+interface Friend{
+    username: string;
+}
 interface UserData{
     username: string,
     email: string
@@ -22,18 +30,39 @@ interface encasedString{
 interface encasedStringArray{
     array:string[]
 }
+
+//This format is used for displaying entries in the Reading List, area.
+interface ReadingListEntry{
+    book:Book;
+    from?: string;
+    dateAdded?: Date;
+    priority: number;
+}
+
+
+interface BookRecommendation{
+    author?:string; 
+    googleId:string;
+    publishDate?:string;
+    image?: string;
+    title: string;
+    message?: string
+    from: string
+    requestId:string
+    dateAdded?: Date
+}
+interface HistoryEntry{
+    book:Book;
+    rating?:number;
+    review?: string;
+    dateAdded?: Date
+}
 interface Book{
     author?:string; 
     googleId:string;
     publishDate?:string;
     image?: string;
-    rating?:number; 
-    review?:string;
     title: string;
-    message?: string
-    from?: string
-    requestId?:string
-    date?: Date
 }
 
 interface BookProperty{

@@ -1,6 +1,6 @@
 
 import { useContext } from "react";
-import Booklist from "../components/Booklist";
+import Booklist from "../components/ReadingList";
 import { UserContext } from "../contexts/UserProvider";
 
 
