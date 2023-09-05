@@ -5,7 +5,7 @@ interface LoggedUser{
     recommendations: BookRecommendation[];
     friends: Friend[];
     readingHistory: HistoryEntry[];
-
+    friendRequests: FriendRequest[]
 }
 
 interface SearchUserValues{
@@ -18,6 +18,9 @@ interface SearchUserValues{
 
 interface Friend{
     username: string;
+    dateAdded: Date;
+    readingHistory: HistoryEntry[],
+    readingList: ReadingListEntry[]
 }
 interface UserData{
     username: string,
@@ -31,6 +34,9 @@ interface encasedStringArray{
     array:string[]
 }
 
+interface FriendRequest{
+    from: string,
+}
 //This format is used for displaying entries in the Reading List, area.
 interface ReadingListEntry{
     book:Book;
@@ -41,11 +47,7 @@ interface ReadingListEntry{
 
 
 interface BookRecommendation{
-    author?:string; 
-    googleId:string;
-    publishDate?:string;
-    image?: string;
-    title: string;
+    book:Book,
     message?: string
     from: string
     requestId:string

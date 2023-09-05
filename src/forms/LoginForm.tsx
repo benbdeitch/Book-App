@@ -41,7 +41,7 @@ export default function LoginForm() {
         if (response.ok) {
             const data = await response.json();
             console.log(data);
-            updateUserState(usernameField.current!.value, data["access_token"])
+            updateUserState(data)
             
         resetForm()
         } else window.alert('Invalid UserData');
@@ -49,16 +49,19 @@ export default function LoginForm() {
 
 
 
-    function updateUserState(username:string, token:string){
-        setUser({
-            username:username,
-            token: token
-        })
-        localStorage.setItem('token', JSON.stringify(token))
-        localStorage.setItem('username', JSON.stringify(username))
+    function updateUserState(data:LoggedUser){
+        setUser(data)
+        localStorage.setItem('token', JSON.stringify(data["token"]))
+        localStorage.setItem('username', JSON.stringify(data["username"]))
+        localStorage.setItem('friends', JSON.stringify(data["friends"]))
+        localStorage.setItem('friendRequests', JSON.stringify(data["friendRequests"]))
+        localStorage.setItem('readingList', JSON.stringify(data["readingList"]))
+        localStorage.setItem('readingHistory', JSON.stringify(data["readingHistory"]))
+        localStorage.setItem('recommendations', JSON.stringify(data["recommendations"]))
         console.log(
             "Local Storage: " +localStorage.getItem("username"),
-            localStorage.getItem("token"))
+            localStorage.getItem("token"),
+            localStorage.getItem('friendRequests'))
 
     }
     return (
