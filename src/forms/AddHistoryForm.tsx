@@ -71,7 +71,7 @@ export default function HistoryForm({book}:BookProperty){
           <br />
           <input type="text" ref={reviewField} required />
         </label><br /><br />
-        <button>Add to History</button>
+        <button>Add to your History</button>
       </form>
       </div>
     )

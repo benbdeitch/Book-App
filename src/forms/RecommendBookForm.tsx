@@ -23,21 +23,9 @@ export default function RecommendForm({string}:encasedString) {
     }
 
     async function getFriendData(){
-        const request = {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + user.token
-            }
-        }
-
-        const response = await fetch(`${URL}api/all-friends`, request)
-
-        if (response.ok){
-            const data = await response.json()
-            console.log(data)
+            
             setFormState(<div className="Box  smallBox">
-                <h2>Recommend Form</h2>
+                <h2>Recommend To:</h2>
                 <form onSubmit={handleRecommendData} className="recommend-form">
                 <label>
                   Message:
@@ -49,10 +37,10 @@ export default function RecommendForm({string}:encasedString) {
                   Recommend To:
                   <br />
                   <select ref={friendField} required>
-               
-                    {data["friends"].length >0 && data["friends"].map((friend:UserData) => {
+
+                    {Object.keys(user.friends).length>0 && Object.keys(user.friends).map((friend) => {
                         console.log(friend)
-                        return (<option value={friend.username}>{friend.username}</option>)
+                        return (<option value={friend}>{friend}</option>)
                     })}
                     </select>
 
@@ -63,8 +51,8 @@ export default function RecommendForm({string}:encasedString) {
         
                         </div>)
         }
-    }
-
+    
+    
     async function handleRecommendData(e:FormEvent<HTMLFormElement>) {
         e.preventDefault();
         let request =  {

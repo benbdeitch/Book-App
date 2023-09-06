@@ -41,6 +41,7 @@ interface encasedStringArray{
 
 interface FriendRequest{
     from: string,
+    date: string
 }
 //This format is used for displaying entries in the Reading List, area.
 interface ReadingListEntry{

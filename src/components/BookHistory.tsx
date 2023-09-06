@@ -30,6 +30,7 @@ export default function BookHistory(){
                 
                 <li>
                     <div className="Box">
+                        
                         <Book book= {entry["book"]}/>
                         {entry.rating?<> `Rating: ${entry.rating}/10`  <br/></>: <></>}
                         {entry.review?<>`Review: ${entry.review}`  <br/></> : <></>}

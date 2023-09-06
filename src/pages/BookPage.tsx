@@ -37,7 +37,9 @@ export default function bookPage(){
         if (response.ok){
             let data = await response.json()
             setBookData(<div className="Flexbox">
-            <Book book={data}/>
+            <div className = "Box">
+                <Book book={data}/>
+            </div>
             <AddHistoryForm book = {data}/>
             <RecommendBookForm string = {string}/>
             </div>)       }
@@ -47,6 +49,7 @@ export default function bookPage(){
     }
 return (
     <>
+   
     {bookData}
     
 
