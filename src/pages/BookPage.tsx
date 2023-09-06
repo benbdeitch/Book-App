@@ -38,7 +38,7 @@ export default function bookPage(){
             let data = await response.json()
             setBookData(<div className="Flexbox">
             <Book book={data}/>
-            <AddHistoryForm string = {string}/>
+            <AddHistoryForm book = {data}/>
             <RecommendBookForm string = {string}/>
             </div>)       }
 

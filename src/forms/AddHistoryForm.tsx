@@ -7,12 +7,12 @@ import { levelContext } from "../contexts/UrlProvider"
 
 
 
-export default function HistoryForm({string}:encasedString){
+export default function HistoryForm({book}:BookProperty){
     const URL  = useContext(levelContext)
     const navigate = useNavigate()
     const ratingField = useRef<HTMLInputElement>(null)
     const reviewField = useRef<HTMLInputElement>(null)
-    const {user} = useContext(UserContext)
+    const {user, setUser} = useContext(UserContext)
     useEffect(() => {
 
       if (!user.username) navigate('/')
@@ -27,7 +27,6 @@ export default function HistoryForm({string}:encasedString){
 
     async function addToHistory(e:FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        console.log(user.token)
         const response = await fetch(`${URL}api/add-history`, {
         method: "POST", 
         headers: {
@@ -37,7 +36,7 @@ export default function HistoryForm({string}:encasedString){
             body: JSON.stringify({
                 rating: ratingField.current!.value, 
                 review: reviewField.current!.value.slice(0,10000),
-                googleId: string
+                googleId: book.googleId
             }),
         }
         );
@@ -45,6 +44,11 @@ export default function HistoryForm({string}:encasedString){
             const data = await response.json();
             alert(data["Success"])
             resetForm()
+            let newUser = {...user}
+            let newEntry = {'book':book, 'rating':parseInt(ratingField.current!.value),'review': reviewField.current!.value.slice(0,10000), 'date': Date()}
+            newUser.readingHistory.push(newEntry)
+            console.log(newEntry)
+            setUser(newUser)
         } else{
             const data = await response.json();
             window.alert(data["msg"]);

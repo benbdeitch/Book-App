@@ -10,7 +10,7 @@ interface UserContextValues{
 export const UserContext = createContext({} as UserContextValues)
 
 export default function AuthProvider({ children }:{children:JSX.Element | JSX.Element[]}){
-    const [user, setUser] = useState<LoggedUser>({username:'', token:'', friends:[], friendRequests: [], readingList:[],recommendations:[],readingHistory:[]})    
+    const [user, setUser] = useState<LoggedUser>({username:'', token:'', email: '', friends:{}, friendRequests: [], readingList:[],recommendations:[],readingHistory:[]})    
 
     const value = {
         user, 

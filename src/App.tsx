@@ -24,16 +24,29 @@ function App() {
       const {user, setUser} = useContext(UserContext)
       let testToken:string|null = localStorage.getItem('token')
       let testUser:string|null = localStorage.getItem('username')
- 
+      let testEmail:string|null=  localStorage.getItem('email')
+      let testRec:string|null = localStorage.getItem('recommendations')
+      let testFriends:string|null = localStorage.getItem('friends')
+      let testFriendReq:string|null = localStorage.getItem('friendRequests')
+      let testList:string|null = localStorage.getItem('readingList')
+      let testHistory:string|null = localStorage.getItem('readingHistory')
       useEffect(() =>{
         if (!user.token && testToken && testUser){
-          setUser({
-            username: JSON.parse(testUser),
-            token: JSON.parse(testToken)
-          })
+          let  newUser = {...user}
+          //Verifying data in the local storage
+          newUser.username= JSON.parse(testUser)?? "",
+          newUser.token= JSON.parse(testToken) ?? ""
+          testEmail? newUser.email = JSON.parse(testEmail): "",
+          testRec? newUser.recommendations = JSON.parse(testRec): [],
+          testFriends? newUser.friends = JSON.parse(testFriends): {},
+          testFriendReq? newUser.friendRequests =  JSON.parse(testFriendReq): [],
+          testList? newUser.readingList= JSON.parse(testList): [],
+          testHistory? newUser.readingHistory= JSON.parse(testHistory):[]
+          setUser(newUser)
+          }
         }
         
-      })
+      )
   return (
     <>
     <div className ="mainSection">

@@ -75,9 +75,11 @@ export default function BookSearchForm() {
                         <ul>
                             {data["books"].map((book:Book) => (
                                 <li id={book.googleId} key={book.googleId}>
-                                    <Book input={book}></Book>
+                                    <div className="Box">
+                                    <Book book={book}></Book>
                                     <History_Add_Button string={book.googleId}/>
                                     <List_Add_Button string = {book.googleId}/>
+                                    </div>
                                 </li>
                             ))}
 
@@ -120,7 +122,9 @@ export default function BookSearchForm() {
 
 
                 </div>
+            
                 {bookData}
+               
     </>
             )
     }
