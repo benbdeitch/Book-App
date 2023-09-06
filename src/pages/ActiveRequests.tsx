@@ -13,15 +13,15 @@ export default function ActiveRequestsPage() {
     const [requestList, setRequestList] = useState(<Spinner/>)
     useEffect( () => {
 
-        loadRequests()
+        setRequestList( <RequestsList />)
     }, [user])
 
     
-            setRequestList( <RequestsList />)
-        }
+            
+       
 
 
-    }
+    
 
     return (
         <>

@@ -14,37 +14,28 @@ export default function RecommendationsPage(){
     }, [user]
     )
 
+    function getRecommendations(){
+        setRecState(<>
+            <div className="Box">
+                <h1> Your Recommendations</h1>
+            </div>
+            {user.recommendations?<><div className="Box"><h5>You have no incoming recommendations.</h5></div></> : 
 
-    async function getRecommendations(){
+            user.recommendations.map((bookRec:BookRecommendation)=> (<>
+            <div className="Box">
+                <Book book={bookRec.book}/>
+                <h5>`From: ${bookRec.from}`</h5>
+                <br/>
+                <h5> `Date Added: ${bookRec.dateAdded}</h5>`
+                {bookRec.requestId?
+            <AcceptDeclineRecommendationButton string={bookRec.requestId}/>: null}
+            </div>
+ 
+            </>))}
+
+            </>)       }
+
     
-        const response = await fetch(`${URL}api/my-recommendations`,  {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + user.token
-                }
-            })
-            if (response.ok){
-                let data = await response.json()
-                console.log(data)
-                setRecState(<>
-                <div className="Box">
-                    <h1> Your Recommendations</h1>
-                </div>
-                {data["recommendations"].length == 0?<><div className="Box"><h5>No Recommendations</h5></div></> : null}
-                {data["recommendations"].length>0 && 
-                data["recommendations"].map((item:Book)=> (<>
-                <div className="Box">
-                    <Book input={item}/>
-                    {item.requestId?
-                <AcceptDeclineRecommendationButton string={item.requestId}/>: null}
-                </div>
-     
-                </>))}
-
-                </>)       }
-        
-    }
     return(<>
     {recState}</>)
 }   

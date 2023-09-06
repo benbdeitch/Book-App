@@ -50,7 +50,13 @@ export default function RegisterForm() {
     function updateUserState(username:string, token:string){
         setUser({
             username:username,
-            token: token
+            token: token,
+            recommendations: [],
+            email: emailField.current!.value,
+            friends:{},
+            friendRequests:[],
+            readingList:[],
+            readingHistory:[]
         })
         localStorage.setItem('token', JSON.stringify(token))
         localStorage.setItem('username', JSON.stringify(username))
@@ -80,7 +86,7 @@ export default function RegisterForm() {
           <br />
           <input type="password" ref={passwordField} required />
         </label><br />
-        <button>Sign In</button>
+        <button>Register</button>
       </form>
 
 

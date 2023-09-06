@@ -25,7 +25,7 @@ export default function Booklist(){
         setBookList(
             <>
             <ul>
-            {user.readingList? <></>: <div className = "Box"><h5>No books in list.</h5></div>}
+            {user.readingList.length>0? <></>: <div className = "Box"><h5>Your reading list is empty!</h5></div>}
             {user.readingList && user.readingList.length>0&& user.readingList.map((entry:ReadingListEntry) => (
                             <li id={entry.book.googleId} key={entry.book.googleId}>
                                 <div className="Box">

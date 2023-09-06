@@ -34,16 +34,17 @@ function App() {
         if (!user.token && testToken && testUser){
           let  newUser = {...user}
           //Verifying data in the local storage
-          newUser.username= JSON.parse(testUser)?? "",
-          newUser.token= JSON.parse(testToken) ?? ""
-          testEmail? newUser.email = JSON.parse(testEmail): "",
-          testRec? newUser.recommendations = JSON.parse(testRec): [],
-          testFriends? newUser.friends = JSON.parse(testFriends): {},
-          testFriendReq? newUser.friendRequests =  JSON.parse(testFriendReq): [],
-          testList? newUser.readingList= JSON.parse(testList): [],
-          testHistory? newUser.readingHistory= JSON.parse(testHistory):[]
-          setUser(newUser)
-          }
+            newUser.username= JSON.parse(testUser ?? ""),
+            newUser.token= JSON.parse(testToken?? "")
+            newUser.email = testEmail?? "",
+            testRec? newUser.recommendations =JSON.parse(testRec): [],
+            testFriends? newUser.friends = JSON.parse(testFriends): {},
+            testFriendReq? newUser.friendRequests =  JSON.parse(testFriendReq): [],
+            testList? newUser.readingList= JSON.parse(testList): [],
+            testHistory? newUser.readingHistory= JSON.parse(testHistory):[]
+            setUser(newUser)}
+
+          
         }
         
       )

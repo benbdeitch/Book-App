@@ -54,14 +54,11 @@ export default function LoginForm() {
         localStorage.setItem('token', JSON.stringify(data["token"]))
         localStorage.setItem('username', JSON.stringify(data["username"]))
         localStorage.setItem('email', JSON.stringify(data["email"]))
-        localStorage.setItem('friends', JSON.stringify(data["friends"]))
-        localStorage.setItem('friendRequests', JSON.stringify(data["friendRequests"]))
-        localStorage.setItem('readingList', JSON.stringify(data["readingList"]))
-        localStorage.setItem('readingHistory', JSON.stringify(data["readingHistory"]))
-        localStorage.setItem('recommendations', JSON.stringify(data["recommendations"]))
-  
-        console.log(
-            data['readingHistory'][0].date)
+        Object.keys(data["friends"]).length > 0 && localStorage.setItem('friends', JSON.stringify(data["friends"]))
+        data["friendRequests"].length > 0 && localStorage.setItem('friendRequests', JSON.stringify(data["friendRequests"]))
+        data["readingList"].length > 0 && localStorage.setItem('readingList', JSON.stringify(data["readingList"]))
+        data["readingHistory"].length > 0 && localStorage.setItem('readingHistory', JSON.stringify(data["readingHistory"]))
+        data["recommendations"].length > 0 && localStorage.setItem('recommendations', JSON.stringify(data["recommendations"]))
 
     }
     return (

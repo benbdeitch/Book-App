@@ -13,22 +13,24 @@ export default function  DisplayUser({string}:encasedString){
     const {user} = useContext(UserContext)
 
     useEffect(() => {
-        console.log('In useEffect')
-      getUserData()
+        console.log(user)
+      getUserData(string)
     }, [string])
     const [userData, setUserData] = useState(<Spinner />);
     
     let apiTarget = `${URL}api/user-profile/${string}`
     
-    async function getUserData() {
+    async function getUserData(string:string) {
 
         if (user.friends.hasOwnProperty(string)){
+            setUserData(
             <><h1>{string}'s Profile Page </h1><br />
-            <h3>Email: {user.friends[string].email }</h3></>
+            <h3>Email: {user.friends[string].email }</h3></>)
         }
         else if(string = user.username){
+            setUserData(
             <><h1>{string}'s Profile Page </h1><br />
-            <h3>Email: {user.email }</h3></>
+            <h3>Email: {user.email }</h3></>)
         }
         else{
         let request ={

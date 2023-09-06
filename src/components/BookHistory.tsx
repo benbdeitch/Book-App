@@ -25,7 +25,9 @@ export default function BookHistory(){
         setReadHistory(
             <>
             <ul>
-            
+            {user.readingHistory.length == 0? <div className="Box">
+                <p>Your reading history is empty!</p>
+            </div>:<></>}
             {user.readingHistory.map((entry:HistoryEntry) => (
                 
                 <li>
