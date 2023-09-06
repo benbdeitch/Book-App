@@ -13,10 +13,23 @@ export default function Logout() {
   useEffect(()=>{
     setUser({
       username:'',
-      token:''
+      token:'',
+      email:'',
+      friends:{},
+      recommendations:[],
+      readingList:[],
+      readingHistory:[],
+      friendRequests:[]
+
     })
     localStorage.removeItem("username")
     localStorage.removeItem("token")
+    localStorage.removeItem('email')
+    localStorage.removeItem('friends')
+    localStorage.removeItem('friendRequests')
+    localStorage.removeItem('readingList')
+    localStorage.removeItem('readingHistory')
+    localStorage.removeItem('recommendations')
     navigate('/')
   })
 

@@ -17,38 +17,32 @@ export default function BookHistory(){
         
         if (!user.username){ navigate('/')}
         if (username){
-        getReadingHistory(username)
+        getReadingHistory()
         }
       }, [])
 
-
-    async function getReadingHistory(username:string){
-        let request = {
-            method: "GET", 
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + user.token
-            },
-               
-            }
-            const response = await fetch(`${URL}api/history/${username}`, request)
-
-            if (response.ok){
-                const data = await response.json()
-                console.log(data)
-                setReadHistory(
-                    <>
-                    <ul>
-                    {data["history"].map((book:Book) => (
-                        <li>
-                            <Book input = {book}/>
-                        </li>
-                    ))}
-                    </ul>
-                    </>
-                )
-            }
-        }
+    function getReadingHistory(){
+        setReadHistory(
+            <>
+            <ul>
+            
+            {user.readingHistory.map((entry:HistoryEntry) => (
+                
+                <li>
+                    <div className="Box">
+                        <Book book= {entry["book"]}/>
+                        {entry.rating?<> `Rating: ${entry.rating}/10`  <br/></>: <></>}
+                        {entry.review?<>`Review: ${entry.review}`  <br/></> : <></>}
+                      
+                        Date Added: {entry.date}
+                    </div>
+                </li>
+            ))}
+           
+            </ul>
+            </>)
+    }
+    
         return (
             <>
             {readHistory}

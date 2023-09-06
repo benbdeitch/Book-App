@@ -1,9 +1,10 @@
 interface LoggedUser{
     username: string;
+    email:string;
     token: string;
     readingList: ReadingListEntry[];
     recommendations: BookRecommendation[];
-    friends: Friend[];
+    friends: FriendList;
     readingHistory: HistoryEntry[];
     friendRequests: FriendRequest[]
 }
@@ -16,8 +17,12 @@ interface SearchUserValues{
 
 }
 
+interface FriendList{
+    [key:string]: Friend
+}
 interface Friend{
     username: string;
+    email:string;
     dateAdded: Date;
     readingHistory: HistoryEntry[],
     readingList: ReadingListEntry[]
@@ -41,7 +46,7 @@ interface FriendRequest{
 interface ReadingListEntry{
     book:Book;
     from?: string;
-    dateAdded?: Date;
+    dateAdded?: string;
     priority: number;
 }
 
@@ -51,13 +56,13 @@ interface BookRecommendation{
     message?: string
     from: string
     requestId:string
-    dateAdded?: Date
+    dateAdded?: string
 }
 interface HistoryEntry{
     book:Book;
     rating?:number;
     review?: string;
-    dateAdded?: Date
+    date: string
 }
 interface Book{
     author?:string; 
@@ -68,7 +73,7 @@ interface Book{
 }
 
 interface BookProperty{
-    input:Book;
+    book:Book;
 }
 
 interface Form{

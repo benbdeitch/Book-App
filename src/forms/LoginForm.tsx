@@ -53,15 +53,15 @@ export default function LoginForm() {
         setUser(data)
         localStorage.setItem('token', JSON.stringify(data["token"]))
         localStorage.setItem('username', JSON.stringify(data["username"]))
+        localStorage.setItem('email', JSON.stringify(data["email"]))
         localStorage.setItem('friends', JSON.stringify(data["friends"]))
         localStorage.setItem('friendRequests', JSON.stringify(data["friendRequests"]))
         localStorage.setItem('readingList', JSON.stringify(data["readingList"]))
         localStorage.setItem('readingHistory', JSON.stringify(data["readingHistory"]))
         localStorage.setItem('recommendations', JSON.stringify(data["recommendations"]))
+  
         console.log(
-            "Local Storage: " +localStorage.getItem("username"),
-            localStorage.getItem("token"),
-            localStorage.getItem('friendRequests'))
+            data['readingHistory'][0].date)
 
     }
     return (

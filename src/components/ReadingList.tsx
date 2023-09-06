@@ -20,41 +20,33 @@ export default function Booklist(){
       getBookList()
     }, [])
     const [bookList, setBookList] = useState(<Spinner />);
-    async function getBookList() {
-        const response = await fetch(`${URL}api/get-book-list`, 
-        {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + user.token
-            }
+    function getBookList() {
+       
+        setBookList(
+            <>
+            <ul>
+            {user.readingList? <></>: <div className = "Box"><h5>No books in list.</h5></div>}
+            {user.readingList && user.readingList.length>0&& user.readingList.map((entry:ReadingListEntry) => (
+                            <li id={entry.book.googleId} key={entry.book.googleId}>
+                                <div className="Box">
+                                <Book book={entry.book}></Book>
+                                {entry.from? "From: " +entry.from: <></>}
+                                Date Added: {entry.dateAdded}
+                                <br/>
+                                {entry.book.googleId ? <>
+                                <History_Add_Button string={entry.book.googleId}/>
+                                <RemoveFromListButton string={entry.book.googleId}/>
+                                </>
+                                : <> </>}
+                                </div>
+                                
 
-        })
-        if (response.ok) {
-            const data = await response.json();
-            console.log(data)
-            setBookList(
-                <>
-                <ul>
-                {data["books"]? <></>: <div className = "Box"><h5>No books in list.</h5></div>}
-                {data["books"] && data["books"].length>0&& data["books"].map((book:Book) => (
-                                <li id={book.googleId} key={book.googleId}>
-                                    <Book input={book}></Book>
-                                    {book.googleId ? <>
-                                    <History_Add_Button string={book.googleId}/>
-                                    <RemoveFromListButton string={book.googleId}/>
-                                    </>
-                                    : <> </>}
-
-                                </li>
-                            ))}
-                </ul>
-                </>
-            )
-        }
-    }
-
-
+                            </li>
+                        ))}
+            </ul>
+            </>
+        )
+                                }
 
 
 

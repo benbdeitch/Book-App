@@ -2,27 +2,22 @@ import { useNavigate } from "react-router-dom"
 
 
 
-export default function Book({input}:BookProperty):JSX.Element{
+export default function Book({book}:BookProperty):JSX.Element{
     const navigate = useNavigate()
 
     function toBookPage(){
-        navigate(`/book/${input.googleId}`)
+        navigate(`/book/${book.googleId}`)
     }
     return (
         <>
-        <div className="Box">
-            {input.image? <img src={input.image} onClick={toBookPage}></img>: <img src="http://place-hold.it/75" onClick={toBookPage}></img>}
+
+            {book.image? <img src={book.image} onClick={toBookPage}></img>: <img src="http://place-hold.it/75" onClick={toBookPage}></img>}
             <div> 
-            Title: {input.title}<br/>
-            Author: {input.author ?? "Unknown"}<br/>
-            Publication Date: {<>{input.publishDate} <br/></>?? "No Date Provided"}
-            {input.rating? <>Rating: {input.rating}/10<br/></>: null}
-            {input.date? <>Date Added: {input.date}<br/></>:null }
-            {input.review? <>Review: {input.review}<br/></>: null}
-            {input.message? <>Message: {input.message}<br/></>: null}<br/>
-            {input.from? `From: ${input.from}`: null}
+            Title: {book.title}<br/>
+            Author: {book.author ?? "Unknown"}<br/>
+            Publication Date: {<>{book.publishDate} <br/></>?? "No Date Provided"}
             </div>
-        </div>
+
         </>
     )
 }
