@@ -7,8 +7,10 @@ import { levelContext } from "../contexts/UrlProvider"
 
 
 
-export default function FriendButton({string}:encasedString){
+export default function FriendButton({item}:encasedItem){
     let response
+    let string = item['string']
+    let number = item['number']
     const URL  = useContext(levelContext)
     const buttonOptions:JSX.Element[] = [<Spinner/>, 
                                 <button className="disabledFriendButton">Friend Request Sent</button>,
@@ -18,12 +20,13 @@ export default function FriendButton({string}:encasedString){
                                 <button className="acceptButton" onClick={acceptRequest}>Accept Friend Request</button>
                                 <button className="declineButton" onClick={declineRequest}>Decline Friend Request</button>
                                 </>]
-    const [buttonState, setButtonState] = useState(buttonOptions[0])
+    const [buttonState, setButtonState] = useState(buttonOptions[number])
+    console.log(number)
     const {username, token} = useContext(UserContext)
     const navigate = useNavigate()
     useEffect(() => {
         if(!username)(navigate('/'))
-        checkFriendship()
+
        
     }, [username] )
         async function makeRequest(){
@@ -83,27 +86,7 @@ export default function FriendButton({string}:encasedString){
                 setButtonState(buttonOptions[2])
             }
         }
-        async function checkFriendship(){
-             response = await fetch(`${URL}api/isfriend/${string}`,{
-                method: "GET", 
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token
-                }
-            })
-            if (response.ok){
-                const data = await response.json()
-                console.log(data)
-                if (data["status"]=="friend")
-                    setButtonState(buttonOptions[3])
-                if (data["status"] == "requestMade")
-                    setButtonState(buttonOptions[1])
-                if (data["status"] == "madeRequest")
-                    setButtonState(buttonOptions[4])
-                if (data["status"]== "none")
-                    setButtonState(buttonOptions[2])
-            }
-        }
+       
          
 
         return(

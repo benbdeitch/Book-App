@@ -33,12 +33,19 @@ interface UserData{
 }
 
 interface encasedString{
+    
     string:string,
+ 
 }
 interface encasedStringArray{
     array:string[]
 }
-
+interface encasedItem{
+    item: {
+    string: string,
+    number: number;
+    }
+}
 interface FriendRequest{
     from: string,
     date: string

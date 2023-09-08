@@ -4,7 +4,7 @@ import Book from "./Book"
 import { Spinner } from "react-bootstrap"
 import { useNavigate} from "react-router-dom"
 import { levelContext } from "../contexts/UrlProvider"
-
+import refreshHistory from "../buttons/refresh_buttons/refreshHistory"
 
 
 export default function BookHistory({string}:encasedString){
@@ -12,6 +12,7 @@ export default function BookHistory({string}:encasedString){
     const username = string
     const navigate = useNavigate()
     const [readHistory, setReadHistory] = useState(<Spinner/>)
+    const refreshButton = refreshHistory(username)
     const URL  = useContext(levelContext)
     useEffect(() => {
         
@@ -20,7 +21,7 @@ export default function BookHistory({string}:encasedString){
         if (username){
         getReadingHistory()
         }
-      }, [])
+      }, [user.username, user.friends, user.readingHistory])
 
     function getReadingHistory(){
         let history:HistoryEntry[]
@@ -40,6 +41,7 @@ export default function BookHistory({string}:encasedString){
         }
         setReadHistory(
             <>
+            {refreshButton}
             <ul>
             {history.length == 0? <div className="Box">
                 <p>{mine? 'Your': 'Their'} reading history is empty!</p>

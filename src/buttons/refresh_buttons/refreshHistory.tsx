@@ -1,39 +1,47 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 import { UserContext } from "../../contexts/UserProvider"
-import Book from "../../components/Book"
-import { Spinner } from "react-bootstrap"
-import { useNavigate, useParams } from "react-router-dom"
 import { levelContext } from "../../contexts/UrlProvider"
 
 
-export default function historyRefresh({setReadHistory}){
-    const {user} = useContext(UserContext)
+export default function refreshHistory(string:string){
+    const {username, token, setReadingHistory, friends, setFriends} = useContext(UserContext)
+    const URL = useContext(levelContext)
+    const requestedName = string
 
-async function getReadingHistory(username:string){
+async function getReadingHistory(){
+    let mine:Boolean = false;
+    console.log(requestedName, username)
+    if (requestedName == username){
+        mine = true;
+    } 
+
     let request = {
         method: "GET", 
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + user.token
-        },
+            'Authorization': 'Bearer ' + token
+        },}
            
-        }
-        const response = await fetch(`${URL}api/history/${username}`, request)
+        
+        const response = await fetch(`${URL}api/history/${requestedName}`, request)
 
         if (response.ok){
             const data = await response.json()
             console.log(data)
-            setReadHistory(
-                <>
-                <ul>
-                {data["history"].map((book:Book) => (
-                    <li>
-                        <Book book = {book}/>
-                    </li>
-                ))}
-                </ul>
-                </>
-            )
+            if (mine){
+                setReadingHistory(data["history"])
+                
+            }
+            else{
+                let adjustment = friends;
+                adjustment[requestedName]["readingHistory"] = data["history"]
+                setFriends(adjustment)
+            }
         }
     }
+
+   return ( <>
+
+        <button onClick={getReadingHistory} className = "refreshButton">Refresh History</button>
+    </>)
 }

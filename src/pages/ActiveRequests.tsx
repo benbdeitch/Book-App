@@ -3,18 +3,20 @@ import { Spinner } from "react-bootstrap"
 import RequestsList from "../components/RequestsList"
 import { UserContext } from "../contexts/UserProvider"
 import { levelContext } from "../contexts/UrlProvider"
+import refreshFriendRequests from "../buttons/refresh_buttons/refreshFriendRequests"
 
 
 
 
 export default function ActiveRequestsPage() {
     const URL  = useContext(levelContext)
-    const {username} = useContext(UserContext)
+    const {username, friendRequests} = useContext(UserContext)
     const [requestList, setRequestList] = useState(<Spinner/>)
+    const refreshButton = refreshFriendRequests()
     useEffect( () => {
 
         setRequestList( <RequestsList />)
-    }, [username])
+    }, [username, friendRequests])
 
     
             
@@ -28,7 +30,7 @@ export default function ActiveRequestsPage() {
         <div className="Box">
         <h1>Incoming Friend Requests</h1>
         </div>
-
+        {refreshButton}
         {requestList}
   
     </>)
