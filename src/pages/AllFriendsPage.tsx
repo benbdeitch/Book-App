@@ -23,7 +23,7 @@ export default function AllFriendsPage(){
 
     function toFriendProfile(friend:string){
         console.log(`${URL}history/${friend}`)
-        navigate(`/history/${friend}`)
+        navigate(`/user-profile/${friend}`)
     }
     
     function getFriendData(){

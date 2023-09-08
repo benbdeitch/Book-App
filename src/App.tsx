@@ -35,7 +35,7 @@ function App() {
           //Verifying data in the local storage
             setUsername(JSON.parse(testUser ?? "")),
             setToken(JSON.parse(testToken?? "")),
-            setEmail(JSON.parse(testEmail)?? ""),
+            testEmail? setEmail(JSON.parse(testEmail)): "",
             testRec? setRecommendations(JSON.parse(testRec)): [],
             testFriends? setFriends(JSON.parse(testFriends)): {},
             testFriendReq? setFriendRequests(JSON.parse(testFriendReq)): [],
