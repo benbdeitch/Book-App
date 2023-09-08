@@ -2,14 +2,14 @@ import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../contexts/UserProvider"
 import Book from "./Book"
 import { Spinner } from "react-bootstrap"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 import { levelContext } from "../contexts/UrlProvider"
 
 
 
-export default function BookHistory(){
+export default function BookHistory({string}:encasedString){
     const user = useContext(UserContext)
-    const {username} = useParams()
+    const username = string
     const navigate = useNavigate()
     const [readHistory, setReadHistory] = useState(<Spinner/>)
     const URL  = useContext(levelContext)
@@ -24,20 +24,25 @@ export default function BookHistory(){
 
     function getReadingHistory(){
         let history:HistoryEntry[]
+        let mine:boolean
         if (username == user.username){
             history = user.readingHistory
+            mine = true
         }
         else if (username && user.friends.hasOwnProperty(username)){
             history = user.friends[username].readingHistory;
+            console.log("Found Friend", history)
+            mine = false
         }
         else{
             history = []
+            mine = false
         }
         setReadHistory(
             <>
             <ul>
             {history.length == 0? <div className="Box">
-                <p>Your reading history is empty!</p>
+                <p>{mine? 'Your': 'Their'} reading history is empty!</p>
             </div>:<></>}
             {history.map((entry:HistoryEntry) => (
                 
