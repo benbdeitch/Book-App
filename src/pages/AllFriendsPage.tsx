@@ -9,17 +9,17 @@ import { levelContext } from "../contexts/UrlProvider"
 
 
 export default function AllFriendsPage(){
-    const {user} = useContext(UserContext)
+    const {friends, username} = useContext(UserContext)
     const URL  = useContext(levelContext)
     const [friendData, setFriendData] = useState(<Spinner/>)
 
     const navigate = useNavigate()
     useEffect( () => {
 
-        if (!user.username){navigate('/')}
+        if (!username){navigate('/')}
         getFriendData()
 
-    },[user])
+    },[username])
 
     function toFriendProfile(friend:string){
         console.log(`${URL}history/${friend}`)
@@ -28,8 +28,8 @@ export default function AllFriendsPage(){
     
     function getFriendData(){
         setFriendData(<>
-            {Object.keys(user.friends).length ===0? <h5>Your friends list is empty!</h5>:
-            Object.keys(user.friends).map((friend:string) => (
+            {Object.keys(friends).length ===0? <h5>Your friends list is empty!</h5>:
+            Object.keys(friends).map((friend:string) => (
                 <div onClick={()=> {toFriendProfile(friend)}} className = "Box" key={friend}>
                     <p>Username: {friend}</p>
                     <FriendButton string={friend}/>

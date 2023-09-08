@@ -7,21 +7,20 @@ export default function Logout() {
 
   console.log('In Logout')
 
-  const { setUser } = useContext(UserContext)
+  const {setUsername, setEmail, setFriendRequests, setFriends, setReadingHistory, setReadingList, setRecommendations, setToken} = useContext(UserContext)
   const navigate = useNavigate()
   
   useEffect(()=>{
-    setUser({
-      username:'',
-      token:'',
-      email:'',
-      friends:{},
-      recommendations:[],
-      readingList:[],
-      readingHistory:[],
-      friendRequests:[]
+   
+      setUsername('')
+      setToken('')
+      setEmail('')
+      setFriends({})
+      setRecommendations([])
+      setReadingList([])
+      setFriendRequests([])
+      setReadingHistory([])
 
-    })
     localStorage.removeItem("username")
     localStorage.removeItem("token")
     localStorage.removeItem('email')

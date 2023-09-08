@@ -14,15 +14,16 @@ export default function bookPage(){
     const URL  = useContext(levelContext)
     let{string:string} = useParams()
     const navigate = useNavigate()
+    const {username, token} = useContext(UserContext)
     const [bookData, setBookData] = useState(<Spinner/>)
     useEffect(() => {
         
-        if (!user.username){ navigate('/')}
+        if (!username){ navigate('/')}
         if (string){
         getBook(string)
         }
-      }, [])
-      const {user} = useContext(UserContext)
+      }, [username])
+
 
 
     async function getBook(string:string){
@@ -31,7 +32,7 @@ export default function bookPage(){
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + user.token
+                'Authorization': 'Bearer ' + token
             }
         })
         if (response.ok){

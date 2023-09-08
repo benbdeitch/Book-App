@@ -12,14 +12,14 @@ export default function BookSearchForm() {
     const titleField= useRef<HTMLInputElement>(null)
     const authorField = useRef<HTMLInputElement>(null)
     const entryField = useRef<HTMLInputElement>(null)
-    let { user} = useContext(UserContext)
+    let { username, token} = useContext(UserContext)
     const navigate = useNavigate()
     const URL  = useContext(levelContext)
 
     useEffect(() => {
        
-      if (!user.username) navigate('/')
-    }, [user])
+      if (!username) navigate('/')
+    }, [username])
     
 
     const [bookData, setBookData] = useState(<></>);
@@ -53,7 +53,7 @@ export default function BookSearchForm() {
             method: "POST", 
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + user.token
+                'Authorization': 'Bearer ' + token
             },
             body: JSON.stringify({
                 'title': title,

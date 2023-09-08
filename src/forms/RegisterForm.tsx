@@ -8,14 +8,14 @@ export default function RegisterForm() {
     const usernameField = useRef<HTMLInputElement>(null)
     const emailField = useRef<HTMLInputElement>(null)
     const passwordField = useRef<HTMLInputElement>(null)
-    const {user, setUser} = useContext(UserContext)
+    const {username, setUsername, setEmail, setToken} = useContext(UserContext)
     const navigate = useNavigate()
 
 
     useEffect(() => {
         console.log('In useEffect')
-      if (user.username) navigate('/')
-    }, [user])
+      if (username) navigate('/')
+    }, [username])
 
 
 
@@ -36,7 +36,7 @@ export default function RegisterForm() {
         if (response.ok) {
             const data = await response.json();
             console.log(data);
-            updateUserState(usernameField.current!.value, data["access_token"])
+            updateUserState(usernameField.current!.value, data["access_token"], emailField.current!.value)
             
 
         } else {
@@ -47,17 +47,10 @@ export default function RegisterForm() {
 
 
 
-    function updateUserState(username:string, token:string){
-        setUser({
-            username:username,
-            token: token,
-            recommendations: [],
-            email: emailField.current!.value,
-            friends:{},
-            friendRequests:[],
-            readingList:[],
-            readingHistory:[]
-        })
+    function updateUserState(username:string, token:string, email:string){
+        setUsername(username)
+        setToken(token)
+        setEmail(email)
         localStorage.setItem('token', JSON.stringify(token))
         localStorage.setItem('username', JSON.stringify(username))
         console.log(

@@ -8,7 +8,7 @@ import { useContext } from 'react';
 import { UserContext } from '../contexts/UserProvider';
 
 export default function Navbars() {
-  const { user } = useContext(UserContext);
+  const { username } = useContext(UserContext);
 
 
     return(
@@ -19,12 +19,12 @@ export default function Navbars() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link as={NavLink} to='/'>Home</Nav.Link>
-            { user.username ? (
+            { username ? (
               <>
           
               <NavDropdown title="My Account" id="basic-nav-dropdown">
-                <NavDropdown.Item as={NavLink} to={`/user-profile/${user.username}`}>User Profile</NavDropdown.Item>
-                  <NavDropdown.Item as={NavLink} to={`/history/${user.username}`}>View Reading History</NavDropdown.Item>
+                <NavDropdown.Item as={NavLink} to={`/user-profile/${username}`}>User Profile</NavDropdown.Item>
+                  <NavDropdown.Item as={NavLink} to={`/history/${username}`}>View Reading History</NavDropdown.Item>
                  <NavDropdown.Item  as={NavLink} to="/show-list" className = 'mr-3'>Show Reading List</NavDropdown.Item>
                  <NavDropdown.Divider />
                  <NavDropdown.Item as={NavLink} to="/logout" className = 'mr-3'>

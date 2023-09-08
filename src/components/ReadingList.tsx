@@ -11,12 +11,12 @@ import { levelContext } from "../contexts/UrlProvider"
 
 
 export default function Booklist(){
-    const {user} = useContext(UserContext)
+    const {readingList, username} = useContext(UserContext)
     const URL  = useContext(levelContext)
     const navigate = useNavigate()
     useEffect(() => {
         
-      if (!user.username){ navigate('/')}
+      if (!username){ navigate('/')}
       getBookList()
     }, [])
     const [bookList, setBookList] = useState(<Spinner />);
@@ -25,8 +25,8 @@ export default function Booklist(){
         setBookList(
             <>
             <ul>
-            {user.readingList.length>0? <></>: <div className = "Box"><h5>Your reading list is empty!</h5></div>}
-            {user.readingList && user.readingList.length>0&& user.readingList.map((entry:ReadingListEntry) => (
+            {readingList.length>0? <></>: <div className = "Box"><h5>Your reading list is empty!</h5></div>}
+            {readingList && readingList.length>0&& readingList.map((entry:ReadingListEntry) => (
                             <li id={entry.book.googleId} key={entry.book.googleId}>
                                 <div className="Box">
                                 <Book book={entry.book}></Book>

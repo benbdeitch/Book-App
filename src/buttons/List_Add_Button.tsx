@@ -8,13 +8,13 @@ import { levelContext } from "../contexts/UrlProvider"
 
 export default function List_Add_Button({string}:encasedString){
     const URL  = useContext(levelContext)
-    const {user} = useContext(UserContext)
+    const {token} = useContext(UserContext)
     async function addToReadingList() {
         const request = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + user.token
+                'Authorization': 'Bearer ' + token
             },
             body: JSON.stringify({
                 "googleId": string

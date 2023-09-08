@@ -4,15 +4,15 @@ import { UserContext } from "../contexts/UserProvider";
 
 
 export default function RequestsList(){
-    let {user} = useContext(UserContext)
+    let {friendRequests} = useContext(UserContext)
 
     return(
         <>
-        {user.friendRequests.length == 0? 
+        {friendRequests.length == 0? 
         <div className="Box">
             <p> You have no incoming friend requests.</p>
         </div>: <></>}
-          {user.friendRequests.length>0 && user.friendRequests.map((request:FriendRequest) =>
+          {friendRequests.length>0 && friendRequests.map((request:FriendRequest) =>
 
             <div className="Box">
                 <h5>From: {request.from}</h5>

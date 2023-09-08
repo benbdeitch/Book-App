@@ -8,7 +8,7 @@ import { levelContext } from "../contexts/UrlProvider"
 
 
 export default function BookHistory(){
-    const {user} = useContext(UserContext)
+    const user = useContext(UserContext)
     const {username} = useParams()
     const navigate = useNavigate()
     const [readHistory, setReadHistory] = useState(<Spinner/>)

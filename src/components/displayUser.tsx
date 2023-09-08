@@ -10,10 +10,10 @@ import { levelContext } from '../contexts/UrlProvider'
 
 export default function  DisplayUser({string}:encasedString){
     const URL  = useContext(levelContext)
-    const {user} = useContext(UserContext)
+    const {friends, username, email, token } = useContext(UserContext)
 
     useEffect(() => {
-        console.log(user)
+        console.log(username)
       getUserData(string)
     }, [string])
     const [userData, setUserData] = useState(<Spinner />);
@@ -22,22 +22,22 @@ export default function  DisplayUser({string}:encasedString){
     
     async function getUserData(string:string) {
 
-        if (user.friends.hasOwnProperty(string)){
+        if (friends.hasOwnProperty(string)){
             setUserData(
             <><h1>{string}'s Profile Page </h1><br />
-            <h3>Email: {user.friends[string].email }</h3></>)
+            <h3>Email: {friends[string].email }</h3></>)
         }
-        else if(string = user.username){
+        else if(string = username){
             setUserData(
             <><h1>{string}'s Profile Page </h1><br />
-            <h3>Email: {user.email }</h3></>)
+            <h3>Email: {email }</h3></>)
         }
         else{
         let request ={
             method: "GET", 
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + user.token
+                'Authorization': 'Bearer ' + token
             }
         }
         const response = await fetch(apiTarget, request)
@@ -54,7 +54,7 @@ export default function  DisplayUser({string}:encasedString){
     return (
         <>
        {userData}
-       {user.username!= string? <FriendButton string={string}/> : <></>}
+       {username!= string? <FriendButton string={string}/> : <></>}
         </>
     )
 

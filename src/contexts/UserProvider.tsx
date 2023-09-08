@@ -1,8 +1,22 @@
 import {createContext, Dispatch, SetStateAction, useState} from 'react'
 
 interface UserContextValues{
-    user: LoggedUser,
-    setUser: Dispatch<SetStateAction<LoggedUser>>
+    username: string,
+    setUsername: Dispatch<SetStateAction<string>>,
+    token: string,
+    setToken: Dispatch<SetStateAction<string>>,
+    email: string,
+    setEmail: Dispatch<SetStateAction<string>>,
+    readingList: ReadingListEntry[],
+    setReadingList: Dispatch<SetStateAction<ReadingListEntry[]>>,
+    recommendations: BookRecommendation[],
+    setRecommendations: Dispatch<SetStateAction<BookRecommendation[]>>,
+    readingHistory: HistoryEntry[],
+    setReadingHistory: Dispatch<SetStateAction<HistoryEntry[]>>,
+    friends: FriendList,
+    setFriends: Dispatch<SetStateAction<FriendList>>,
+    friendRequests: FriendRequest[],
+    setFriendRequests:Dispatch<SetStateAction<FriendRequest[]>>
 }
 
 
@@ -10,11 +24,19 @@ interface UserContextValues{
 export const UserContext = createContext({} as UserContextValues)
 
 export default function AuthProvider({ children }:{children:JSX.Element | JSX.Element[]}){
-    const [user, setUser] = useState<LoggedUser>({username:'', token:'', email: '', friends:{}, friendRequests: [], readingList:[],recommendations:[],readingHistory:[]})    
 
+    const [username, setUsername] = useState<string>("")
+    const [token, setToken] = useState<string>("")
+    const [email, setEmail] = useState<string>("")
+    const [readingList, setReadingList] = useState<ReadingListEntry[]>([])
+    const [recommendations, setRecommendations] = useState<BookRecommendation[]>([])
+    const [readingHistory, setReadingHistory] = useState<HistoryEntry[]>([])
+    const [friends, setFriends] = useState<FriendList>({})
+    const [friendRequests, setFriendRequests] = useState<FriendRequest[]>([])
+
+    
     const value = {
-        user, 
-        setUser}
+        username, setUsername, token, setToken, email, setEmail, readingList, setReadingList, recommendations, setRecommendations, friends, setFriends, readingHistory, setReadingHistory, friendRequests, setFriendRequests}
     
         return <UserContext.Provider value={value}>
             {children }

@@ -8,14 +8,14 @@ export default function LoginForm() {
     console.log(URL)
     const usernameField = useRef<HTMLInputElement>(null)
     const passwordField = useRef<HTMLInputElement>(null)
-    const {user, setUser} = useContext(UserContext)
+    const {username, setUsername, setReadingHistory, setEmail, setToken, setFriendRequests, setFriends, setReadingList, setRecommendations} = useContext(UserContext)
     const navigate = useNavigate()
-    console.log(user)
+    console.log(username)
 
     useEffect(() => {
         console.log('In useEffect')
-      if (user.username) navigate('/')
-    }, [user])
+      if (username) navigate('/')
+    }, [username])
 
 
     function resetForm(){
@@ -50,7 +50,14 @@ export default function LoginForm() {
 
 
     function updateUserState(data:LoggedUser){
-        setUser(data)
+        setUsername(data["username"])
+        setToken(data["token"])
+        setEmail(data["email"])
+        setReadingHistory(data["readingHistory"])
+        setRecommendations(data["recommendations"])
+        setFriends(data["friends"])
+        setFriendRequests(data["friendRequests"])
+        setReadingList(data["readingList"])
         localStorage.setItem('token', JSON.stringify(data["token"]))
         localStorage.setItem('username', JSON.stringify(data["username"]))
         localStorage.setItem('email', JSON.stringify(data["email"]))

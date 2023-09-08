@@ -12,11 +12,11 @@ export default function HistoryForm({book}:BookProperty){
     const navigate = useNavigate()
     const ratingField = useRef<HTMLInputElement>(null)
     const reviewField = useRef<HTMLInputElement>(null)
-    const {user, setUser} = useContext(UserContext)
+    const {username, token, readingHistory, setReadingHistory} = useContext(UserContext)
     useEffect(() => {
 
-      if (!user.username) navigate('/')
-    }, [user])
+      if (!username) navigate('/')
+    }, [username])
 
     function resetForm(){
         ratingField.current!.value = ''
@@ -31,7 +31,7 @@ export default function HistoryForm({book}:BookProperty){
         method: "POST", 
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + user.token
+            'Authorization': 'Bearer ' + token
         },
             body: JSON.stringify({
                 rating: ratingField.current!.value, 
@@ -44,11 +44,11 @@ export default function HistoryForm({book}:BookProperty){
             const data = await response.json();
             alert(data["Success"])
             resetForm()
-            let newUser = {...user}
+            let history = readingHistory
             let newEntry = {'book':book, 'rating':parseInt(ratingField.current!.value),'review': reviewField.current!.value.slice(0,10000), 'date': Date()}
-            newUser.readingHistory.push(newEntry)
+            history.push(newEntry)
             console.log(newEntry)
-            setUser(newUser)
+            setReadingHistory(history)
         } else{
             const data = await response.json();
             window.alert(data["msg"]);

@@ -8,11 +8,11 @@ import BookSearchForm from '../forms/BookSearchForm'
 export default function BookSearchResultsPage( ) {
     let completed = false;
 
-    const {user} = useContext(UserContext)
+    const {username} = useContext(UserContext)
     const navigate = useNavigate()
     useEffect(() => {
         console.log('Displaying books')
-      if (!user.username) navigate('/')
+      if (!username) navigate('/')
 
     }, [completed])
     

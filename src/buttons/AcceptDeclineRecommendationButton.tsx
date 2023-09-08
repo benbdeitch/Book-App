@@ -3,8 +3,8 @@ import { UserContext } from "../contexts/UserProvider"
 import { levelContext } from "../contexts/UrlProvider"
 
 
-export default function AcceptDeclineRecommendationButton({string}:encasedString){
-    const {user} = useContext(UserContext)
+export default function AcceptDeclineRecommendationButton({bookRec}:encasedBookRec){
+    const {token} = useContext(UserContext)
     const URL  = useContext(levelContext)
     let buttonOptions= [ <>
         <button onClick={acceptRecommendation}> Accept</button>
@@ -17,9 +17,9 @@ export default function AcceptDeclineRecommendationButton({string}:encasedString
                 method: "POST", 
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + user.token
+                    'Authorization': 'Bearer ' + token
                 },
-                body: JSON.stringify({"index": string})
+                body: JSON.stringify({"index": bookRec.requestId})
             })
             if (response.ok){
                 alert(`Recommendation has been accepted.`)
@@ -32,9 +32,9 @@ export default function AcceptDeclineRecommendationButton({string}:encasedString
             method: "POST", 
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + user.token
+                'Authorization': 'Bearer ' + token
             },
-            body: JSON.stringify({"index": string})
+            body: JSON.stringify({"index": bookRec.requestId})
         })
         if (response.ok){
             alert(`Recommendation has been declined`)

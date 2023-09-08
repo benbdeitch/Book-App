@@ -7,7 +7,7 @@ import { levelContext } from '../contexts/UrlProvider'
 export default function RecommendForm({string}:encasedString) {
     const friendField = useRef<HTMLSelectElement>(null)
     const messageField = useRef<HTMLInputElement>(null)
-    const {user} = useContext(UserContext)
+    const {username, friends, token} = useContext(UserContext)
     const URL  = useContext(levelContext)
     const [formState, setFormState] = useState(<Spinner/>)
     
@@ -15,7 +15,7 @@ export default function RecommendForm({string}:encasedString) {
         console.log('In useEffect')
         getFriendData()
 
-    }, [user])
+    }, [username])
 
 
     function resetForm() {
@@ -38,7 +38,7 @@ export default function RecommendForm({string}:encasedString) {
                   <br />
                   <select ref={friendField} required>
 
-                    {Object.keys(user.friends).length>0 && Object.keys(user.friends).map((friend) => {
+                    {Object.keys(friends).length>0 && Object.keys(friends).map((friend) => {
                         console.log(friend)
                         return (<option value={friend}>{friend}</option>)
                     })}
@@ -59,7 +59,7 @@ export default function RecommendForm({string}:encasedString) {
             method: "POST", 
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + user.token
+                'Authorization': 'Bearer ' + token
             },
                 body: JSON.stringify({
                 toUsername: friendField.current!.value, 

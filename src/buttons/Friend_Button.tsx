@@ -19,19 +19,19 @@ export default function FriendButton({string}:encasedString){
                                 <button className="declineButton" onClick={declineRequest}>Decline Friend Request</button>
                                 </>]
     const [buttonState, setButtonState] = useState(buttonOptions[0])
-    const {user} = useContext(UserContext)
+    const {username, token} = useContext(UserContext)
     const navigate = useNavigate()
     useEffect(() => {
-        if(!user)(navigate('/'))
+        if(!username)(navigate('/'))
         checkFriendship()
        
-    }, [user] )
+    }, [username] )
         async function makeRequest(){
             response = await fetch(`${URL}api/make-request`,{
                 method: "POST", 
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + user.token
+                    'Authorization': 'Bearer ' + token
                 },
                 body: JSON.stringify({"username": string})
             })
@@ -45,7 +45,7 @@ export default function FriendButton({string}:encasedString){
                 method: "POST", 
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + user.token
+                    'Authorization': 'Bearer ' + token
                 },
                 body: JSON.stringify({"username": string})
             })
@@ -60,7 +60,7 @@ export default function FriendButton({string}:encasedString){
                 method: "POST", 
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + user.token
+                    'Authorization': 'Bearer ' + token
                 },
                 body: JSON.stringify({"username": string})
             })
@@ -74,7 +74,7 @@ export default function FriendButton({string}:encasedString){
                 method: "POST", 
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + user.token
+                    'Authorization': 'Bearer ' + token
                 },
                 body: JSON.stringify({"username": string})
             })
@@ -88,7 +88,7 @@ export default function FriendButton({string}:encasedString){
                 method: "GET", 
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + user.token
+                    'Authorization': 'Bearer ' + token
                 }
             })
             if (response.ok){

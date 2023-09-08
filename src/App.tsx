@@ -21,7 +21,7 @@ import RecommendationsPage from "./pages/RecommendationsPage";
 
 function App() {
 
-      const {user, setUser} = useContext(UserContext)
+      const {setUsername, token, setToken, setEmail,  setReadingList, setRecommendations, setFriends,  setReadingHistory, setFriendRequests} = useContext(UserContext)
       let testToken:string|null = localStorage.getItem('token')
       let testUser:string|null = localStorage.getItem('username')
       let testEmail:string|null=  localStorage.getItem('email')
@@ -31,18 +31,17 @@ function App() {
       let testList:string|null = localStorage.getItem('readingList')
       let testHistory:string|null = localStorage.getItem('readingHistory')
       useEffect(() =>{
-        if (!user.token && testToken && testUser){
-          let  newUser = {...user}
+        if (!token && testToken && testUser){
           //Verifying data in the local storage
-            newUser.username= JSON.parse(testUser ?? ""),
-            newUser.token= JSON.parse(testToken?? "")
-            newUser.email = testEmail?? "",
-            testRec? newUser.recommendations =JSON.parse(testRec): [],
-            testFriends? newUser.friends = JSON.parse(testFriends): {},
-            testFriendReq? newUser.friendRequests =  JSON.parse(testFriendReq): [],
-            testList? newUser.readingList= JSON.parse(testList): [],
-            testHistory? newUser.readingHistory= JSON.parse(testHistory):[]
-            setUser(newUser)}
+            setUsername(JSON.parse(testUser ?? "")),
+            setToken(JSON.parse(testToken?? "")),
+            setEmail(testEmail?? ""),
+            testRec? setRecommendations(JSON.parse(testRec)): [],
+            testFriends? setFriends(JSON.parse(testFriends)): {},
+            testFriendReq? setFriendRequests(JSON.parse(testFriendReq)): [],
+            testList? setReadingList(JSON.parse(testList)): [],
+            testHistory? setReadingHistory(JSON.parse(testHistory)):[]
+           }
 
           
         }

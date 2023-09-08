@@ -3,7 +3,7 @@ import { UserContext } from "../contexts/UserProvider"
 import { levelContext } from "../contexts/UrlProvider"
 
 export default function RemoveFromListButton({string}:encasedString){
-    const {user} = useContext(UserContext)
+    const {token} = useContext(UserContext)
     const URL  = useContext(levelContext)
     const buttonOptions= [<button onClick={removeFromList}>Remove from List?</button>, <div className="Box">Item Removed</div>]
     const [buttonState, setButtonState] = useState(buttonOptions[0])
@@ -13,7 +13,7 @@ export default function RemoveFromListButton({string}:encasedString){
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + user.token
+                'Authorization': 'Bearer ' + token
             },
             body: JSON.stringify({googleId: string})
         }

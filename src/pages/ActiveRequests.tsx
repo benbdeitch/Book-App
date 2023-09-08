@@ -9,12 +9,12 @@ import { levelContext } from "../contexts/UrlProvider"
 
 export default function ActiveRequestsPage() {
     const URL  = useContext(levelContext)
-    const {user} = useContext(UserContext)
+    const {username} = useContext(UserContext)
     const [requestList, setRequestList] = useState(<Spinner/>)
     useEffect( () => {
 
         setRequestList( <RequestsList />)
-    }, [user])
+    }, [username])
 
     
             

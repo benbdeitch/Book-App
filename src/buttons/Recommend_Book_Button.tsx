@@ -5,14 +5,14 @@ import FriendButton from "./Friend_Button"
 
 
 export default function Recommend_Book_Button(){
-    const {user} = useContext(UserContext)
+    const {username, token} = useContext(UserContext)
     const [friendData, setFriendData] = useState(<></>)
     const URL  = useContext(levelContext)
 
     useEffect(() => {
 
         getFriendData()
-    }, [user])
+    }, [username])
 
 
     async function getFriendData(){
@@ -20,7 +20,7 @@ export default function Recommend_Book_Button(){
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + user.token
+                'Authorization': 'Bearer ' + token
             }
         }
 

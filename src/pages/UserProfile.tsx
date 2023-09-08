@@ -9,12 +9,12 @@ import { useContext } from "react"
 
 
 export default function UserProfile(){
-    const {user} =useContext(UserContext)
+    const {username} =useContext(UserContext)
     const navigate = useNavigate()
     let{string} = useParams()
     console.log(string)
     if (!string){
-        string = user.username
+        string = username
     }
 
     function toHistoryPage(){

@@ -51,7 +51,9 @@ interface ReadingListEntry{
     priority: number;
 }
 
-
+interface encasedBookRec{
+    bookRec: BookRecommendation
+}
 interface BookRecommendation{
     book:Book,
     message?: string
