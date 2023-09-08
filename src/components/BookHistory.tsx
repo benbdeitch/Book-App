@@ -15,20 +15,31 @@ export default function BookHistory(){
     const URL  = useContext(levelContext)
     useEffect(() => {
         
-        if (!user.username){ navigate('/')}
+        if (!user.username){ console.log("Failure")
+        navigate('/')}
         if (username){
         getReadingHistory()
         }
       }, [])
 
     function getReadingHistory(){
+        let history:HistoryEntry[]
+        if (username == user.username){
+            history = user.readingHistory
+        }
+        else if (username && user.friends.hasOwnProperty(username)){
+            history = user.friends[username].readingHistory;
+        }
+        else{
+            history = []
+        }
         setReadHistory(
             <>
             <ul>
-            {user.readingHistory.length == 0? <div className="Box">
+            {history.length == 0? <div className="Box">
                 <p>Your reading history is empty!</p>
             </div>:<></>}
-            {user.readingHistory.map((entry:HistoryEntry) => (
+            {history.map((entry:HistoryEntry) => (
                 
                 <li>
                     <div className="Box">
