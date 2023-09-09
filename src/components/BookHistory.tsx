@@ -16,8 +16,11 @@ export default function BookHistory({string}:encasedString){
     const URL  = useContext(levelContext)
     useEffect(() => {
         
-        if (!user.username){ console.log("Failure")
-        navigate('/')}
+      
+       
+        if (!user.username || user.username!= string && !user.friends.hasOwnProperty(string)){
+            navigate('/')
+        }
         if (username){
         getReadingHistory()
         }

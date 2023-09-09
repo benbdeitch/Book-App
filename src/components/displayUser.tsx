@@ -4,6 +4,7 @@ import { UserContext } from '../contexts/UserProvider'
 import { Spinner } from 'react-bootstrap'
 import FriendButton from '../buttons/Friend_Button'
 import { levelContext } from '../contexts/UrlProvider'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -11,9 +12,11 @@ import { levelContext } from '../contexts/UrlProvider'
 export default function  DisplayUser({string}:encasedString){
     const URL  = useContext(levelContext)
     const {friends, username, email, token, friendRequests } = useContext(UserContext)
-    
+
+    const navigate = useNavigate()
+    let number:number = 0;
     useEffect(() => {
-        let number:number = 0;
+        number= 0;
         console.log("string: " + string)
       getUserData(string, number)
     }, [username])
@@ -65,11 +68,20 @@ export default function  DisplayUser({string}:encasedString){
         } else setUserData(<><h1>No User Found</h1></>);
     }
     }
-
+    function toHistoryPage(){
+        navigate(`/history/${string}`)
+    }
     return (
         <>
-       {userData}
-       
+        <div className="Box">
+            {userData}
+        </div>
+        <div className="Box">
+        { number==3||number==5?  
+        
+            <button onClick={toHistoryPage}>To {string}'s History</button>
+        : <p> {string}'s history is hidden, as they are not on your friends list.</p>}
+        </div>
         </>
     )
 

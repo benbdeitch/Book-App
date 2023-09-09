@@ -10,24 +10,20 @@ import { useContext } from "react"
 
 export default function UserProfile(){
     const {username} =useContext(UserContext)
-    const navigate = useNavigate()
+
     let{string} = useParams()
     console.log(string)
     if (!string){
         string = username
     }
 
-    function toHistoryPage(){
-        navigate(`/history/${string}`)
-    }
+
     return (
         <>
-        <div className="Box">
+       
         <DisplayUser string= {string}/>
-        </div>
-        <div className="Box">
-        <button onClick={toHistoryPage}>To {string}'s History</button>
-        </div>
+     
+       
         </>
     )    
 }
