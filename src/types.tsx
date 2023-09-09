@@ -6,7 +6,7 @@ interface LoggedUser{
     recommendations: BookRecommendation[];
     friends: FriendList;
     readingHistory: HistoryEntry[];
-    friendRequests: FriendRequest[]
+    friendRequests: AllRequest
 }
 
 interface SearchUserValues{
@@ -17,6 +17,10 @@ interface SearchUserValues{
 
 }
 
+interface AllRequest{
+    in: IncFriendRequest[],
+    out: OutFriendRequest[]
+}
 interface FriendList{
     [key:string]: Friend
 }
@@ -46,8 +50,12 @@ interface encasedItem{
     number: number;
     }
 }
-interface FriendRequest{
+interface IncFriendRequest{
     from: string,
+    date: string
+}
+interface OutFriendRequest{
+    to: string,
     date: string
 }
 //This format is used for displaying entries in the Reading List, area.

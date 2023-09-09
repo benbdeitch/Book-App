@@ -15,8 +15,8 @@ interface UserContextValues{
     setReadingHistory: Dispatch<SetStateAction<HistoryEntry[]>>,
     friends: FriendList,
     setFriends: Dispatch<SetStateAction<FriendList>>,
-    friendRequests: FriendRequest[],
-    setFriendRequests:Dispatch<SetStateAction<FriendRequest[]>>
+    friendRequests: AllRequest,
+    setFriendRequests:Dispatch<SetStateAction<AllRequest>>
 }
 
 
@@ -32,7 +32,7 @@ export default function AuthProvider({ children }:{children:JSX.Element | JSX.El
     const [recommendations, setRecommendations] = useState<BookRecommendation[]>([])
     const [readingHistory, setReadingHistory] = useState<HistoryEntry[]>([])
     const [friends, setFriends] = useState<FriendList>({})
-    const [friendRequests, setFriendRequests] = useState<FriendRequest[]>([])
+    const [friendRequests, setFriendRequests] = useState<AllRequest>({"in":[], "out":[]})
 
     
     const value = {

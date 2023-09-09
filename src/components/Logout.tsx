@@ -18,7 +18,7 @@ export default function Logout() {
       setFriends({})
       setRecommendations([])
       setReadingList([])
-      setFriendRequests([])
+      setFriendRequests({"in":[], "out":[]})
       setReadingHistory([])
 
     localStorage.removeItem("username")

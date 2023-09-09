@@ -50,7 +50,10 @@ export default function  DisplayUser({string}:encasedString){
         
         if (response.ok) {
             number =2
-            for (let i of friendRequests){
+            for (let  i of friendRequests["out"]){
+                if (i.to == string){ number = 1; break;}
+            }
+            for (let i of friendRequests["in"]){
                 if (i.from == string) { number =4; break; }
             }
       
