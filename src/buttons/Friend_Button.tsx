@@ -19,7 +19,7 @@ export default function FriendButton({item}:encasedItem){
                                 <>
                                 <button className="acceptButton" onClick={acceptRequest}>Accept Friend Request</button>
                                 <button className="declineButton" onClick={declineRequest}>Decline Friend Request</button>
-                                </>]
+                                </>, <></>]
     const [buttonState, setButtonState] = useState(buttonOptions[number])
     console.log(number)
     const {username, token} = useContext(UserContext)
