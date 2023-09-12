@@ -23,6 +23,7 @@ export default function refreshFriendList(){
             console.log(data)
             setFriends(data["friends"])
         }
+      
     }
 
     return(<>

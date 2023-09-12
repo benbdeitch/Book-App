@@ -1,30 +1,36 @@
-async function getRecommendations(){
-    
-    const response = await fetch(`${URL}api/my-recommendations`,  {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + user.token
+import { useContext} from "react"
+import { UserContext } from "../../contexts/UserProvider"
+
+import { levelContext } from "../../contexts/UrlProvider"
+import { useNavigate } from "react-router-dom"
+
+
+export default function refreshRecommendations(){
+    const navigate = useNavigate()
+    const URL = useContext(levelContext)
+    const {token, setRecommendations} = useContext(UserContext)
+        async function getRecommendations(){
+            console.log("hi")
+            let response = await fetch(`${URL}api/my-recommendations`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+            if (response.ok){
+                const data = await response.json()
+                console.log(data)
+                setRecommendations(data["recommendations"])
+                localStorage.setItem('recommendations', JSON.stringify(data["recommendations"]))
             }
-        })
-        if (response.ok){
-            let data = await response.json()
-            console.log(data)
-            setRecState(<>
-            <div className="Box">
-                <h1> Your Recommendations</h1>
-            </div>
-            {data["recommendations"].length == 0?<><div className="Box"><h5>You have no incoming recommendations.</h5></div></> : 
-
-            data["recommendations"].map((item:Book)=> (<>
-            <div className="Box">
-                <Book input={item}/>
-                {item.requestId?
-            <AcceptDeclineRecommendationButton string={item.requestId}/>: null}
-            </div>
- 
-            </>))}
-
-            </>)       }
+        }
     
-}
+    
+        return (
+            <>
+    
+            <button onClick={getRecommendations} className = "refreshButton">Refresh Reading List</button>
+            </>
+        )
+    }

@@ -27,9 +27,7 @@ export default function ActiveRequestsPage() {
 
     return (
         <>
-        <div className="Box">
-        <h1>Incoming Friend Requests</h1>
-        </div>
+
         {refreshButton}
         {requestList}
   

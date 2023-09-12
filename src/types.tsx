@@ -3,12 +3,17 @@ interface LoggedUser{
     email:string;
     token: string;
     readingList: ReadingListEntry[];
-    recommendations: BookRecommendation[];
+    recommendations: BookRecommendations;
     friends: FriendList;
     readingHistory: HistoryEntry[];
     friendRequests: AllRequest
 }
 
+
+interface BookRecommendations{
+    in: InBookRecommendation[];
+    out: OutBookRecommendation[]
+}
 interface SearchUserValues{
     state:{
     username:string;
@@ -44,6 +49,9 @@ interface encasedString{
 interface encasedStringArray{
     array:string[]
 }
+interface EncasedBookListEntry{
+    entry: ReadingListEntry
+}
 interface encasedItem{
     item: {
     string: string,
@@ -67,12 +75,21 @@ interface ReadingListEntry{
 }
 
 interface encasedBookRec{
-    bookRec: BookRecommendation
+    bookRec: InBookRecommendation|OutBookRecommendation
 }
-interface BookRecommendation{
+
+
+interface InBookRecommendation{
     book:Book,
     message?: string
     from: string
+    requestId:string
+    dateAdded?: string
+}
+interface OutBookRecommendation{
+    book:Book,
+    message?: string
+    to: string
     requestId:string
     dateAdded?: string
 }

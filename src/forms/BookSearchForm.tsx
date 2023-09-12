@@ -77,8 +77,8 @@ export default function BookSearchForm() {
                                 <li id={book.googleId} key={book.googleId}>
                                     <div className="Box">
                                     <Book book={book}></Book>
-                                    <History_Add_Button string={book.googleId}/>
-                                    <List_Add_Button string = {book.googleId}/>
+                                    <History_Add_Button book={book}/>
+                                    <List_Add_Button book = {book}/>
                                     </div>
                                 </li>
                             ))}

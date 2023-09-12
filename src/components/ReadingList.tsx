@@ -6,6 +6,7 @@ import Book from "./Book"
 import History_Add_Button from "../buttons/History_Add_Button"
 import RemoveFromListButton from "../buttons/RemoveFromListButton"
 import { levelContext } from "../contexts/UrlProvider"
+import refreshReadingList from "../buttons/refresh_buttons/refreshReadingList"
 
 
 
@@ -14,14 +15,15 @@ export default function Booklist(){
     const {readingList, username} = useContext(UserContext)
     const URL  = useContext(levelContext)
     const navigate = useNavigate()
+    const refreshButton = refreshReadingList()
     useEffect(() => {
         
       if (!username){ navigate('/')}
       getBookList()
-    }, [])
+    }, [readingList])
     const [bookList, setBookList] = useState(<Spinner />);
     function getBookList() {
-       
+       console.log(readingList)
         setBookList(
             <>
             <ul>
@@ -53,6 +55,7 @@ export default function Booklist(){
 
     return (
         <>
+        {refreshButton}
             {bookList}
         </>
     )

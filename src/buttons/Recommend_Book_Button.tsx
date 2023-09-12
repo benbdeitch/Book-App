@@ -34,7 +34,7 @@ export default function Recommend_Book_Button(){
             data["friends"].map((friend:UserData) => (
                 <div className = "Box">
                     <p>Username: {friend.username}</p>
-                    <FriendButton string={friend.username}/>
+                    <FriendButton item={{'string':friend.username,'number': 5}}/>
                 </div>
 
             ))}

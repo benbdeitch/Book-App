@@ -1,13 +1,14 @@
 import { useContext } from "react"
 import { UserContext } from "../../contexts/UserProvider"
 import { levelContext } from "../../contexts/UrlProvider"
+import { useNavigate } from "react-router-dom"
 
 
 export default function refreshHistory(string:string){
     const {username, token, setReadingHistory, friends, setFriends} = useContext(UserContext)
     const URL = useContext(levelContext)
     const requestedName = string
-
+    const navigate = useNavigate()
 async function getReadingHistory(){
     let mine:Boolean = false;
     console.log(requestedName, username)
@@ -37,6 +38,9 @@ async function getReadingHistory(){
                 adjustment[requestedName]["readingHistory"] = data["history"]
                 setFriends(adjustment)
             }
+        }
+        else{
+            navigate('/logout')
         }
     }
 

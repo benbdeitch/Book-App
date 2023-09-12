@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom"
 
 
 
-export default function History_Add_Button({string}:encasedString){
+export default function History_Add_Button({book}:BookProperty){
     const navigate = useNavigate()
     function toBookPage(){
-        navigate(`/book/${string}`)
+        navigate(`/book/${book.googleId}`)
     }
 
     return(

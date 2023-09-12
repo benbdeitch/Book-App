@@ -17,21 +17,40 @@ export default function RecommendationsPage(){
     function getRecommendations(){
         setRecState(<>
             <div className="Box">
-                <h1> Your Recommendations</h1>
-            </div>
-            {recommendations.length== 0?<><div className="Box"><h5>You have no incoming recommendations.</h5></div></> : 
+                <h1> Incoming Recommendations</h1>
+           
+            {recommendations.in.length== 0?<><div className="Box"><h5>You have no incoming recommendations.</h5></div></> : 
 
-            recommendations.map((bookRec:BookRecommendation)=> (<>
-            <div className="Box">
+            recommendations.in.map((bookRec:InBookRecommendation)=> (<>
+          
                 <Book book={bookRec.book}/>
                 <h5>`From: ${bookRec.from}`</h5>
                 <br/>
                 <h5> `Date Added: ${bookRec.dateAdded}</h5>`
                 {bookRec.requestId?
             <AcceptDeclineRecommendationButton bookRec={bookRec}/>: null}
-            </div>
- 
+        
+                    
             </>))}
+            </div>
+            <div className="Box">
+                <h1> Outgoing Recommendations</h1>
+           
+            {recommendations.out.length== 0?<><div className="Box"><h5>You have no outgoing recommendations.</h5></div></> : 
+
+            recommendations.out.map((bookRec:OutBookRecommendation)=> (<>
+          
+                <Book book={bookRec.book}/>
+                <h5>`From: ${bookRec.to}`</h5>
+                <br/>
+                <h5> `Date Added: ${bookRec.dateAdded}</h5>`
+                {bookRec.requestId?
+            <AcceptDeclineRecommendationButton bookRec={bookRec}/>: null}
+        
+                    
+            </>))}
+            </div>
+
 
             </>)       }
 

@@ -21,7 +21,7 @@ export default function  DisplayUser({string}:encasedString){
       getUserData(string, number)
     }, [username])
     const [userData, setUserData] = useState(<Spinner />);
-    
+    const [historyEnabled, setHistoryData] = useState(<Spinner />)
     let apiTarget = `${URL}api/user-profile/${string}`
     
     async function getUserData(string:string, number:number) {
@@ -32,6 +32,7 @@ export default function  DisplayUser({string}:encasedString){
             <><h1>{string}'s Profile Page </h1><br />
             <h3>Email: {friends[string].email }</h3>
             {<FriendButton item={{'string':string, 'number':number}}/>}</>)
+            setHistoryData(<button onClick={toHistoryPage}>To {string}'s History</button>)
         }
         else if(string == username){
             number = 5 
@@ -39,6 +40,7 @@ export default function  DisplayUser({string}:encasedString){
             <><h1>{string}'s Profile Page </h1><br />
             <h3>Email: {email }</h3>
             { <FriendButton item={{'string':string, 'number':number}}/>}</>)
+            setHistoryData(<button onClick={toHistoryPage}>To {string}'s History</button>)
         }
         else{
         console.log('Request sent')
@@ -65,6 +67,7 @@ export default function  DisplayUser({string}:encasedString){
             setUserData( <><h1>{data["username"]}'s Profile Page </h1><br />
             <h3>Email: {data["email"]}</h3>
             {<FriendButton item={{'string':string, 'number':number}}/>}</>)
+            setHistoryData(<p> {string}'s history is hidden, as they are not on your friends list.</p>)
         } else setUserData(<><h1>No User Found</h1></>);
     }
     }
@@ -77,10 +80,7 @@ export default function  DisplayUser({string}:encasedString){
             {userData}
         </div>
         <div className="Box">
-        { number==3||number==5?  
-        
-            <button onClick={toHistoryPage}>To {string}'s History</button>
-        : <p> {string}'s history is hidden, as they are not on your friends list.</p>}
+            {historyEnabled}
         </div>
         </>
     )

@@ -43,8 +43,15 @@ export default function Navbars() {
                <NavDropdown title="Manage List" id="basic-nav-dropdown">
                  <NavDropdown.Item as={NavLink} to={'/recommendations'}>View Recommendations</NavDropdown.Item>
                  <NavDropdown.Item as={NavLink} to={'/book-search'}>
-                   Search by Book 
+                   Search by Book
                  </NavDropdown.Item>
+                 <NavDropdown.Item>
+                 <Nav.Item>
+              <Nav.Link as={NavLink} to="/sorting">
+                  Reorder Reading List
+                    </Nav.Link>
+          </Nav.Item>
+          </NavDropdown.Item>
                </NavDropdown>
                <UserSearch />
                </>
@@ -62,8 +69,9 @@ export default function Navbars() {
           </Nav.Item>
         </>
       )}
-           
+         
           </Nav>
+          
         </Navbar.Collapse>
         
       </Container>

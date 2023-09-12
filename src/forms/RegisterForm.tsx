@@ -8,6 +8,7 @@ export default function RegisterForm() {
     const usernameField = useRef<HTMLInputElement>(null)
     const emailField = useRef<HTMLInputElement>(null)
     const passwordField = useRef<HTMLInputElement>(null)
+    const passwordField2 = useRef<HTMLInputElement>(null)
     const {username, setUsername, setEmail, setToken} = useContext(UserContext)
     const navigate = useNavigate()
 
@@ -21,6 +22,10 @@ export default function RegisterForm() {
 
     async function handleUserData(e:FormEvent<HTMLFormElement>) {
         e.preventDefault();
+        if (passwordField2.current!.value != passwordField.current!.value){
+            window.alert("Passwords do not match")
+            return;
+        }
         const response = await fetch(`${URL}api/register`, {
         method: "POST", 
         headers: {
@@ -78,6 +83,11 @@ export default function RegisterForm() {
           Password:
           <br />
           <input type="password" ref={passwordField} required />
+        </label><br />
+        <label>
+          Re-enter Password:
+          <br />
+          <input type="password" ref={passwordField2} required />
         </label><br />
         <button>Register</button>
       </form>

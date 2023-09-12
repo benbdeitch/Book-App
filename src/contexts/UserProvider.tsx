@@ -9,8 +9,8 @@ interface UserContextValues{
     setEmail: Dispatch<SetStateAction<string>>,
     readingList: ReadingListEntry[],
     setReadingList: Dispatch<SetStateAction<ReadingListEntry[]>>,
-    recommendations: BookRecommendation[],
-    setRecommendations: Dispatch<SetStateAction<BookRecommendation[]>>,
+    recommendations: BookRecommendations,
+    setRecommendations: Dispatch<SetStateAction<BookRecommendations>>,
     readingHistory: HistoryEntry[],
     setReadingHistory: Dispatch<SetStateAction<HistoryEntry[]>>,
     friends: FriendList,
@@ -29,7 +29,7 @@ export default function AuthProvider({ children }:{children:JSX.Element | JSX.El
     const [token, setToken] = useState<string>("")
     const [email, setEmail] = useState<string>("")
     const [readingList, setReadingList] = useState<ReadingListEntry[]>([])
-    const [recommendations, setRecommendations] = useState<BookRecommendation[]>([])
+    const [recommendations, setRecommendations] = useState<BookRecommendations>({"in":[], "out":[]})
     const [readingHistory, setReadingHistory] = useState<HistoryEntry[]>([])
     const [friends, setFriends] = useState<FriendList>({})
     const [friendRequests, setFriendRequests] = useState<AllRequest>({"in":[], "out":[]})

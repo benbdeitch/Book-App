@@ -18,6 +18,7 @@ import BookHistoryPage from "./pages/BookHistoryPage";
 import AllFriendsPage from "./pages/AllFriendsPage";
 import ActiveRequestsPage from "./pages/ActiveRequests";
 import RecommendationsPage from "./pages/RecommendationsPage";
+import SortingPage from "./pages/SortingPage";
 
 function App() {
 
@@ -42,7 +43,7 @@ function App() {
             testList? setReadingList(JSON.parse(testList)): [],
             testHistory? setReadingHistory(JSON.parse(testHistory)):[]
            }
-
+           
           
         }
         
@@ -66,6 +67,7 @@ function App() {
       <Route path= '/book-search' element= {<BookSearchResultsPage/>} />
       <Route path='*' element={<Navigate to='/' />} />
       <Route path='/recommendations' element={<RecommendationsPage/>}/>
+      <Route path='/sorting' element={<SortingPage/>}/>
       </Routes>
       
       

@@ -51,7 +51,7 @@ export default function BookHistory({string}:encasedString){
             </div>:<></>}
             {history.map((entry:HistoryEntry) => (
                 
-                <li>
+                <li key={entry.book.googleId}>
                     <div className="Box">
                         
                         <Book book= {entry["book"]}/>

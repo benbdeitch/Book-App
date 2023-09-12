@@ -6,10 +6,12 @@ import { levelContext } from "../contexts/UrlProvider"
 
 
 
-export default function List_Add_Button({string}:encasedString){
+export default function List_Add_Button({book}:BookProperty){
     const URL  = useContext(levelContext)
-    const {token} = useContext(UserContext)
+    console.log(book)
+    const {token, readingList, setReadingList} = useContext(UserContext)
     async function addToReadingList() {
+        
         const request = {
             method: 'POST',
             headers: {
@@ -17,7 +19,7 @@ export default function List_Add_Button({string}:encasedString){
                 'Authorization': 'Bearer ' + token
             },
             body: JSON.stringify({
-                "googleId": string
+                "googleId": book.googleId
 
             })
 
@@ -30,6 +32,10 @@ export default function List_Add_Button({string}:encasedString){
             alert('')
             const data = await response.json();
             alert(data["Success"])
+            let newList = readingList
+            newList.unshift({"book": book, "priority": data["priority"]})
+            setReadingList(newList)
+            localStorage.setItem('readingList', JSON.stringify(newList))
         }
         else{
             const data = await response.json();

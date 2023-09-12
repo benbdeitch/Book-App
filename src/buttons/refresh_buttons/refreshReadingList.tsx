@@ -1,44 +1,39 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext} from "react"
 import { UserContext } from "../../contexts/UserProvider"
-import { useNavigate } from "react-router-dom"
-import { Spinner } from 'react-bootstrap'
-import Book from "./Book"
-import History_Add_Button from "../History_Add_Button"
-import RemoveFromListButton from "../RemoveFromListButton"
+
 import { levelContext } from "../../contexts/UrlProvider"
+import { useNavigate } from "react-router-dom"
 
 
 export default function refreshReadingList(){
-    const response = await fetch(`${URL}api/get-book-list`, 
-    {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + user.token
+    const navigate = useNavigate()
+    const URL = useContext(levelContext)
+    const {token, setReadingList} = useContext(UserContext)
+        async function getReadingList(){
+            console.log("hi")
+            let response = await fetch(`${URL}api/get-book-list`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+            if (response.ok){
+                const data = await response.json()
+                console.log(data)
+                setReadingList(data["books"])
+                localStorage.setItem('readingList', JSON.stringify(data["books"]))
+            }
+            else{
+                navigate('/logout')
+            }
         }
-
-    })
-    if (response.ok) {
-        const data = await response.json();
-        console.log(data)
-        setBookList(
+    
+    
+        return (
             <>
-            <ul>
-            {data["books"]? <></>: <div className = "Box"><h5>No books in list.</h5></div>}
-            {data["books"] && data["books"].length>0&& data["books"].map((book:Book) => (
-                            <li id={book.googleId} key={book.googleId}>
-                                <Book input={book}></Book>
-                                {book.googleId ? <>
-                                <History_Add_Button string={book.googleId}/>
-                                <RemoveFromListButton string={book.googleId}/>
-                                </>
-                                : <> </>}
-
-                            </li>
-                        ))}
-            </ul>
+    
+            <button onClick={getReadingList} className = "refreshButton">Refresh Reading List</button>
             </>
         )
     }
-}
-
