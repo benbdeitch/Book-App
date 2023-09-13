@@ -109,6 +109,7 @@ interface Book{
     image?: { imgSml?:string,
                 img?:string }
     title: string;
+    subtitle?: string;
 }
 
 
