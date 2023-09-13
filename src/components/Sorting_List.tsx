@@ -39,17 +39,20 @@ const dragEnter = (e:React.DragEvent<HTMLDivElement>, position:number) => {
   };
 return (
   <>
+  <div className="Box">
   {
   list.map((entry, index) => (
-    <div style={{backgroundColor:'black', margin:'20px 25%', textAlign:'center', fontSize:'16px'}}
+    <div style={{backgroundColor:'green', margin:'20px ', textAlign:'center', fontSize:'16px', borderRadius:'10px', }}
       key={index}
       onDragStart={() => dragStart(index)}
       onDragEnter={(e:React.DragEvent<HTMLDivElement>) => dragEnter(e, index)}
       onDragEnd={drop}
       draggable>
+        <hr/>
         {readingList.length - entry.priority + 1})  {entry.book.title}, {entry.book.author}, {entry.dateAdded}
     </div>
     ))}
+    </div>
   </>
 );
 };

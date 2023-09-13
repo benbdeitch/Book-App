@@ -3,10 +3,11 @@ import {useNavigate} from 'react-router-dom'
 import { UserContext } from '../contexts/UserProvider'
 import { Spinner } from 'react-bootstrap'
 import History_Add_Button from '../buttons/History_Add_Button'
-import Book from '../components/Book'
+
 
 import List_Add_Button from '../buttons/List_Add_Button'
 import { levelContext } from '../contexts/UrlProvider'
+import BookRow from '../components/BookRow'
 
 export default function BookSearchForm() {
     const titleField= useRef<HTMLInputElement>(null)
@@ -58,7 +59,7 @@ export default function BookSearchForm() {
             body: JSON.stringify({
                 'title': title,
                 'author': author,
-                'howManyEntries': howManyEntries
+                'startIndex': howManyEntries
             })
         }
         console.log(request)
@@ -70,23 +71,26 @@ export default function BookSearchForm() {
             console.log(data);
             setBookData( 
                 <>
-                <h1 className="Box">Search Page</h1>
-                    {data["books"].length> 0 && (
-                        <ul>
-                            {data["books"].map((book:Book) => (
-                                <li id={book.googleId} key={book.googleId}>
-                                    <div className="Box">
-                                    <Book book={book}></Book>
-                                    <History_Add_Button book={book}/>
-                                    <List_Add_Button book = {book}/>
-                                    </div>
-                                </li>
-                            ))}
+                 <h1 className="Box">Search Page</h1>
+                <table className="Box">
+                    <tr>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                    </tr>
+                 
+               
+                    {data["books"].length> 0 && 
+                       
+                            data["books"].map((book:Book) => (
+                               <BookRow book={book}/>
+                            )
 
-                        </ul>
+                       
                     )}
+                    </table>
                 </>)
-        } else setBookData(<div className="Box"><h1>No books Found</h1></div>);
+        } else setBookData(<div className="Box"><h1>No books found.</h1></div>);
         
 
 

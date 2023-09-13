@@ -78,7 +78,10 @@ interface encasedBookRec{
     bookRec: InBookRecommendation|OutBookRecommendation
 }
 
-
+interface Image{
+    imgSmall: string|null,
+    img:string|null
+}
 interface InBookRecommendation{
     book:Book,
     message?: string
@@ -103,9 +106,11 @@ interface Book{
     author?:string; 
     googleId:string;
     publishDate?:string;
-    image?: string;
+    image?: { imgSml?:string,
+                img?:string }
     title: string;
 }
+
 
 interface BookProperty{
     book:Book;

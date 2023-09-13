@@ -45,13 +45,11 @@ export default function Navbars() {
                  <NavDropdown.Item as={NavLink} to={'/book-search'}>
                    Search by Book
                  </NavDropdown.Item>
-                 <NavDropdown.Item>
-                 <Nav.Item>
-              <Nav.Link as={NavLink} to="/sorting">
+                 <NavDropdown.Item as={NavLink} to="/sorting">
+   
                   Reorder Reading List
-                    </Nav.Link>
-          </Nav.Item>
-          </NavDropdown.Item>
+         
+                </NavDropdown.Item>
                </NavDropdown>
                <UserSearch />
                </>

@@ -11,7 +11,7 @@ export default function Book({book}:BookProperty):JSX.Element{
     return (
         <>
 
-            {book.image? <img src={book.image} onClick={toBookPage}></img>: <img src="http://place-hold.it/75" onClick={toBookPage}></img>}
+            {book.image? <img src={book.image.img} onClick={toBookPage}></img>: <img src="http://place-hold.it/75" onClick={toBookPage}></img>}
             <div> 
             Title: {book.title}<br/>
             Author: {book.author ?? "Unknown"}<br/>
