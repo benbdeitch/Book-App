@@ -8,7 +8,6 @@ import { levelContext } from "../contexts/UrlProvider"
 
 export default function List_Add_Button({book}:BookProperty){
     const URL  = useContext(levelContext)
-    console.log(book)
     const {token, readingList, setReadingList} = useContext(UserContext)
     async function addToReadingList() {
         
@@ -29,7 +28,6 @@ export default function List_Add_Button({book}:BookProperty){
         )
 
         if (response.ok){
-            alert('')
             const data = await response.json();
             alert(data["Success"])
             let newList = readingList

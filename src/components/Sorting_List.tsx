@@ -15,9 +15,8 @@ const dragStart = ( position:number) => {
 const drop = (e:React.DragEvent<HTMLDivElement>) => {
     
     if (dragEntry.current!=null && dragOverItem.current!= null){
-         const readingListCopy = [...readingList];
+        const readingListCopy = [...readingList];
         const dragItemContent = readingListCopy[dragEntry.current];
-    
         readingListCopy.splice(dragEntry.current, 1);
         readingListCopy.splice(dragOverItem.current, 0, dragItemContent);
         dragEntry.current = null;
@@ -49,7 +48,7 @@ return (
       onDragEnd={drop}
       draggable>
         <hr/>
-        {readingList.length - entry.priority + 1})  {entry.book.title}, {entry.book.author}, {entry.dateAdded}
+        {index+1})  {entry.book.title}, {entry.book.author}, {entry.dateAdded}
     </div>
     ))}
     </div>

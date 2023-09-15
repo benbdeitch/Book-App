@@ -65,7 +65,7 @@ export default function LoginForm() {
         data["friendRequests"]["in"].length > 0 || data["friendRequests"]["out"].length > 0 && localStorage.setItem('friendRequests', JSON.stringify(data["friendRequests"]))
         data["readingList"].length > 0 && localStorage.setItem('readingList', JSON.stringify(data["readingList"]))
         data["readingHistory"].length > 0 && localStorage.setItem('readingHistory', JSON.stringify(data["readingHistory"]))
-        data["recommendations"].length > 0 && localStorage.setItem('recommendations', JSON.stringify(data["recommendations"]))
+        data["recommendations"] && localStorage.setItem('recommendations', JSON.stringify(data["recommendations"]))
 
     }
     return (
