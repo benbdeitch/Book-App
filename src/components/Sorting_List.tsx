@@ -41,7 +41,7 @@ return (
   <div className="Box">
   {
   list.map((entry, index) => (
-    <div style={{backgroundColor:'green', margin:'20px ', textAlign:'center', fontSize:'16px', borderRadius:'10px', }}
+    <div className="sortEntry"
       key={index}
       onDragStart={() => dragStart(index)}
       onDragEnter={(e:React.DragEvent<HTMLDivElement>) => dragEnter(e, index)}
