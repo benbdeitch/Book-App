@@ -15,7 +15,7 @@ export default function Booklist(){
     const {readingList, username} = useContext(UserContext)
     const URL  = useContext(levelContext)
     const navigate = useNavigate()
-    const refreshButton = refreshReadingList()
+
     useEffect(() => {
         
       if (!username){ navigate('/')}
@@ -36,7 +36,7 @@ export default function Booklist(){
                                 Date Added: {entry.dateAdded}
                                 <br/>
                                 {entry.book.googleId ? <>
-                                <History_Add_Button string={entry.book.googleId}/>
+                                <History_Add_Button book={entry.book}/>
                                 <RemoveFromListButton string={entry.book.googleId}/>
                                 </>
                                 : <> </>}
@@ -55,7 +55,7 @@ export default function Booklist(){
 
     return (
         <>
-        {refreshButton}
+
             {bookList}
         </>
     )
