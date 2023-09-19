@@ -2,11 +2,11 @@ import { useContext} from "react"
 import { UserContext } from "../../contexts/UserProvider"
 
 import { levelContext } from "../../contexts/UrlProvider"
-import { useNavigate } from "react-router-dom"
+
 
 
 export default function refreshRecommendations(){
-    const navigate = useNavigate()
+
     const URL = useContext(levelContext)
     const {token, setRecommendations} = useContext(UserContext)
         async function getRecommendations(){
