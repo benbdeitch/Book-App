@@ -3,10 +3,10 @@ import { Spinner } from "react-bootstrap"
 import Book from "../components/Book"
 import { UserContext } from "../contexts/UserProvider"
 import AcceptDeclineRecommendationButton from "../buttons/AcceptDeclineRecommendationButton"
-import { levelContext } from "../contexts/UrlProvider"
+
 
 export default function RecommendationsPage(){
-    const URL  = useContext(levelContext)
+
     const [recState, setRecState] = useState(<Spinner/>)
     const {username, recommendations} = useContext(UserContext)
     useEffect(()=>{
