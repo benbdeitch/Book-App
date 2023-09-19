@@ -1,8 +1,8 @@
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect} from "react";
 
 import { UserContext } from "../contexts/UserProvider";
-import SortingListEntry from "../components/SortingListEntry";
+
 import { useNavigate } from "react-router-dom";
 import SortingList from "../components/Sorting_List";
 import SortingButton from "../buttons/SortedButton";

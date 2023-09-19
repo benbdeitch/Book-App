@@ -2,7 +2,7 @@
 
 
 import DisplayUser from "../components/displayUser"
-import { useNavigate, useParams } from "react-router-dom"
+import {useParams } from "react-router-dom"
 import { UserContext } from "../contexts/UserProvider"
 import { useContext } from "react"
 

@@ -12,7 +12,7 @@ const dragStart = ( position:number) => {
     dragEntry.current = position;
   };
 
-const drop = (e:React.DragEvent<HTMLDivElement>) => {
+const drop = () => {
     
     if (dragEntry.current!=null && dragOverItem.current!= null){
         const readingListCopy = [...readingList];

@@ -13,7 +13,7 @@ export default function BookHistory({string}:encasedString){
     const navigate = useNavigate()
     const [readHistory, setReadHistory] = useState(<Spinner/>)
     const refreshButton = refreshHistory(username)
-    const URL  = useContext(levelContext)
+
     useEffect(() => {
         
       
