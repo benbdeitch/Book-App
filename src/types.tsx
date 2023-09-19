@@ -120,3 +120,7 @@ interface BookProperty{
 interface Form{
     form:JSX.Element;
 }
+
+interface ObjectOfStrings{
+    [key:string]: string;
+}

@@ -31,6 +31,7 @@ export default function LoginForm() {
         method: "POST", 
         headers: {
             'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
         },
             body: JSON.stringify({
                 username: usernameField.current!.value, 
@@ -40,14 +41,17 @@ export default function LoginForm() {
         );
         if (response.ok) {
             const data = await response.json();
+
             console.log(data);
             updateUserState(data)
+         
             
         resetForm()
         } else window.alert('Invalid UserData');
     }
 
 
+    
 
     function updateUserState(data:LoggedUser){
         setUsername(data["username"])

@@ -41,9 +41,9 @@ export default function RecommendationsPage(){
             recommendations.out.map((bookRec:OutBookRecommendation)=> (<>
           
                 <Book book={bookRec.book}/>
-                <h5>`From: ${bookRec.to}`</h5>
+                <h5>{`From: ${bookRec.to}`}</h5>
                 <br/>
-                <h5> `Date Added: ${bookRec.dateAdded}</h5>`
+                <h5> {`Date Added: ${bookRec.dateAdded}`}</h5>
                 {bookRec.requestId?
             <AcceptDeclineRecommendationButton bookRec={bookRec}/>: null}
         

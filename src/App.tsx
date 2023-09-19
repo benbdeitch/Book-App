@@ -20,6 +20,7 @@ import ActiveRequestsPage from "./pages/ActiveRequests";
 import RecommendationsPage from "./pages/RecommendationsPage";
 import SortingPage from "./pages/SortingPage";
 import checkToken from "./static/helper_functions/checkToken";
+import logout from "./static/helper_functions/logout";
 
 function App() {
 
@@ -36,17 +37,22 @@ function App() {
   useEffect(() =>{
     if (!token && testToken && testUser){
       //Verifying data in the local storage
-      setUsername(JSON.parse(testUser ?? "")),
-      setToken(JSON.parse(testToken?? "")),
-      checkToken(token, context)
-      testEmail? setEmail(JSON.parse(testEmail)): "",
-      testRec? setRecommendations(JSON.parse(testRec)): [],
-      testFriends? setFriends(JSON.parse(testFriends)): {},
-      testFriendReq? setFriendRequests(JSON.parse(testFriendReq)): [],
-      testList? setReadingList(JSON.parse(testList)): [],
-      testHistory? setReadingHistory(JSON.parse(testHistory)):[]
+      try{
+        setUsername(JSON.parse(testUser ?? "")),
+        setToken(JSON.parse(testToken?? "")),
+        checkToken(token, context)
+        testEmail? setEmail(JSON.parse(testEmail)): "",
+        testRec? setRecommendations(JSON.parse(testRec)): [],
+        testFriends? setFriends(JSON.parse(testFriends)): {},
+        testFriendReq? setFriendRequests(JSON.parse(testFriendReq)): [],
+        testList? setReadingList(JSON.parse(testList)): [],
+        testHistory? setReadingHistory(JSON.parse(testHistory)):[]
+      }
+      catch{
+        logout(context)
+      }
     }
-  })
+  }, [testUser])
   
   return (
     <>

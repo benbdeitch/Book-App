@@ -1,11 +1,12 @@
 import { useContext } from "react"
 import { UserContext } from "../../contexts/UserProvider"
 import { levelContext } from "../../contexts/UrlProvider"
+import updateToken from "../../static/helper_functions/updateToken"
 
 
 
 export default function refreshFriendList(){
-    const { token, setFriends} = useContext(UserContext)
+    const { token, setToken, setFriends} = useContext(UserContext)
     const URL  = useContext(levelContext)
     async function getFriendData(){
         const request = {
@@ -22,6 +23,7 @@ export default function refreshFriendList(){
             const data = await response.json()
             console.log(data)
             setFriends(data["friends"])
+            updateToken(data, setToken)
         }
       
     }

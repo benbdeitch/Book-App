@@ -16,10 +16,10 @@ export default function RequestsList(){
        : <></>}
        
           {friendRequests.in.length>0 && friendRequests.in.map((request:IncFriendRequest) =>
-               (<>
+               (<div key={"from" + request.from}>
                 <h5>From: {request.from}</h5>
                 <p> Date: {request.date}</p>
-                <FriendButton  item={{'string': request.from, 'number': 4}}/></>))
+                <FriendButton  item={{'string': request.from, 'number': 4}}/></div>))
            }
            </div>
            <div className="Box">
@@ -31,10 +31,10 @@ export default function RequestsList(){
         : <></>}
         {friendRequests.out.length>0 && friendRequests.out.map((request:OutFriendRequest) =>
 
-           <>
+           <div key={"to" + request.to}>
                 <h5>To: {request.to}</h5>
                 <p> Date: {request.date}</p>
-            </>)}
+            </div>)}
             </div>
             </>)
 

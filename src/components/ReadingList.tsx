@@ -5,15 +5,14 @@ import { Spinner } from 'react-bootstrap'
 import Book from "./Book"
 import History_Add_Button from "../buttons/History_Add_Button"
 import RemoveFromListButton from "../buttons/RemoveFromListButton"
-import { levelContext } from "../contexts/UrlProvider"
-import refreshReadingList from "../buttons/refresh_buttons/refreshReadingList"
+
 
 
 
 
 export default function Booklist(){
     const {readingList, username} = useContext(UserContext)
-    const URL  = useContext(levelContext)
+
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -27,7 +26,7 @@ export default function Booklist(){
         setBookList(
             <>
             <ul>
-            {readingList.length>0? <></>: <div className = "Box"><h5>Your reading list is empty!</h5></div>}
+            {readingList &&readingList.length>0? <></>: <div className = "Box"><h5>Your reading list is empty!</h5></div>}
             {readingList && readingList.length>0&& readingList.map((entry:ReadingListEntry) => (
                             <li id={entry.book.googleId} key={entry.book.googleId}>
                                 <div className="Box">
